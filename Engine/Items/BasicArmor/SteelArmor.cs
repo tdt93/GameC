@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Game.Engine.Items.BasicArmor
+{
+    class SteelArmor : Item
+    {
+        // no special effects, but stronger than other BasicArmors
+        public SteelArmor() : base("item0005") 
+        { 
+            PublicName = "SteelArmor";
+            GoldValue = 40;
+            arMod = 40;
+        }
+
+    }
+}
