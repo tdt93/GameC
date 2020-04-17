@@ -19,6 +19,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
---- ADDENDUM: TILESET LICENSES ---
-
-You can use these tilesets in your program freely. No attribution is required. As a courtesy, include a link to the OGA page: http://opengameart.org/content/dungeon-crawl-32x32-tiles, the crawl-tiles page: http://code.google.com/p/crawl-tiles/ or see the License Notice instructions on http://rltiles.sourceforge.net/
+See also http://opengameart.org/content/dungeon-crawl-32x32-tiles for tilesets
