@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Monsters
 {
+    [Serializable]
     class RatEvolved : Monster
     {
         // evolved rat - this time also with venom

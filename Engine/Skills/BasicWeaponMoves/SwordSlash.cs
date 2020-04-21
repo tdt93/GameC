@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicWeaponMoves
 {
+    [Serializable]
     class SwordSlash : Skill
     {
         // simple slash with sword

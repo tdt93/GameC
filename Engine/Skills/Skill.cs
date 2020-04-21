@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills
 {
+    [Serializable]
     public abstract class Skill
     {
         // a class representing a generic skill

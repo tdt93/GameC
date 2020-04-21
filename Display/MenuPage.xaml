@@ -21,7 +21,9 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Click="StartGame" 
                 Grid.Column="2" Grid.Row="1"
@@ -45,9 +47,32 @@
                     </Grid>
                 </DataTemplate>
             </Button.ContentTemplate>
-        </Button> 
-        <Button Click="ExitGame" 
+        </Button>
+        <Button Click="LoadGame" 
                 Grid.Column="2" Grid.Row="3"
+                FontFamily="Impact" BorderThickness="2" BorderBrush="Black">
+            <Button.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Viewbox Grid.Row="1" Grid.Column="1">
+                            <TextBlock>Load Game</TextBlock>
+                        </Viewbox>
+                    </Grid>
+                </DataTemplate>
+            </Button.ContentTemplate>
+        </Button>
+        <Button Click="ExitGame" 
+                Grid.Column="2" Grid.Row="5"
                FontFamily="Impact" BorderThickness="2" BorderBrush="Black">
             <Button.ContentTemplate>
                 <DataTemplate>

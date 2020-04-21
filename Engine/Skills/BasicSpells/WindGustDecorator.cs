@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicSkills
 {
+    [Serializable]
     class WindGustDecorator : SkillDecorator
     {
         // decorator for Wind Gust class

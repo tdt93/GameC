@@ -4,6 +4,7 @@ using Game.Engine.Skills;
 
 namespace Game.Engine.CharacterClasses
 {
+    [Serializable]
     public abstract class Player : Subject
     {
         // statistics: Health, Strength, Armor, Precision, MagicPower, Stamina, XP (hidden), Level, Gold

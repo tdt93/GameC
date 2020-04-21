@@ -94,10 +94,12 @@
     <Compile Include="Display\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Display\GamePageMouseMove.cs" />
     <Compile Include="Display\ImageInteractionScene.cs" />
     <Compile Include="Display\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Display\GamePageData.cs" />
     <Compile Include="Engine\Battle.cs" />
     <Compile Include="Engine\CharacterClasses\Mage.cs" />
     <Compile Include="Engine\CharacterClasses\Warrior.cs" />

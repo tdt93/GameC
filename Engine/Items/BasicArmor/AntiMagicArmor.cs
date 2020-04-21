@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Items.BasicArmor
 {
+    [Serializable]
     class AntiMagicArmor : Item
     {
         // extra 30% reduction of magic damage

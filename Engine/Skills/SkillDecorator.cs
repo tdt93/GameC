@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Skills
 {
+    [Serializable]
     abstract class SkillDecorator : Skill
     {
         // decorate skills with other skills

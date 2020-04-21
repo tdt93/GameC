@@ -4,6 +4,7 @@ using Game.Engine.Items.BasicArmor;
 
 namespace Game.Engine.Items.ItemFactories
 {
+    [Serializable]
     class BasicArmorFactory : ItemFactory
     {
         // produce items from BasicArmor directory

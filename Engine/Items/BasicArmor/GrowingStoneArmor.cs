@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Items.BasicArmor
 {
+    [Serializable]
     class GrowingStoneArmor : Item
     {
         // armor with magic crystals that can grow stronger from the user's magic aura

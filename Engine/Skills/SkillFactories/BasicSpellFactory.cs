@@ -5,6 +5,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.SkillFactories
 {
+    [Serializable]
     class BasicSpellFactory : SkillFactory
     {  
         // this factory produces skills from BasicSpells directory

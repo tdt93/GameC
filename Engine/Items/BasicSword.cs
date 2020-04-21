@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Items
 {
+    [Serializable]
     class BasicSword : Sword
     {
         // simple sword

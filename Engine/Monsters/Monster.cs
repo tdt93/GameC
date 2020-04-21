@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace Game.Engine.Monsters
 {
+    [Serializable]
     public abstract class Monster : Subject
     {
         // abstract class representing a monster

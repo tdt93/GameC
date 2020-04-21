@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicSkills
 {
+    [Serializable]
     class FireArrowDecorator : SkillDecorator
     {
         // decorator for Fire Arrow class

@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicSkills
 {
+    [Serializable]
     class LightFlashDecorator : SkillDecorator
     {
         // decorator for Light Flash class

@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicSkills
 {
+    [Serializable]
     class LightFlash : Skill
     {
         // light flash: -15 precision debuff fot the enemy

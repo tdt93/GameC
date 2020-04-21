@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Monsters.MonsterFactories
 {
+    [Serializable]
     class RatFactory : MonsterFactory
     {
         // this factory produces rats (or evolved rats)

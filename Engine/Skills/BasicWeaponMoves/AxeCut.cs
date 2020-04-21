@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicWeaponMoves
 {
+    [Serializable]
     class AxeCut : Skill
     {
         // simple axe cut

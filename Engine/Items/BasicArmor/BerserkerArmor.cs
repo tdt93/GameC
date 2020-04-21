@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Items.BasicArmor
 {
+    [Serializable]
     class BerserkerArmor : Item
     {
         // special passive: each time you lose health, receive a bonus to physical damage you deal

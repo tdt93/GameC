@@ -6,6 +6,7 @@ using Game.Engine.CharacterClasses;
 namespace Game.Engine.Items
 {
     // a class representing a generic item
+    [Serializable]
     public abstract class Item : DisplayItem
     {
         protected int hpMod, strMod, arMod, prMod, mgcMod, staMod; // statistic buffs

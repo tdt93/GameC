@@ -2,6 +2,7 @@
 
 namespace Game.Engine.Monsters.MonsterFactories
 {
+    [Serializable]
     public abstract class MonsterFactory
     {
         // interface representing monster factory

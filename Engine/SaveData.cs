@@ -1,26 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using Game.Engine.Items;
-using Game.Engine.CharacterClasses;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using Game.Display;
 
 namespace Game.Engine
 {
     // contains all information that has to be saved (and then loaded) in order to restore a game state
 
-    [Serializable]
-    public class SaveData
+    partial class GameSession
     {
-        public int PlayerPosTop, PlayerPosLeft;
-        public int[,] MapMatrix;
-        public List<int> ItemPositions;
-        public List<Item> Items;
-        public Player CurrentPlayer;
-        //factoriesData
-        //moreElements...
-        public SaveData(GameSession session)
+        public void SaveGame(string filename)
         {
-            // ale te wlasnosci sa prywatne 
-            // moze latwiej zaczac od fabryk?
+            try 
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, this);
+                stream.Close();
+            }
+            catch(Exception e)
+            {
+                SendText(e.Message);
+            }
         }
+
+        public void ReInitialize(GamePage page)
+        {
+            parentPage = page;
+            timer = new System.Windows.Forms.Timer();
+            timerPlayer = new System.Windows.Forms.Timer();
+            RefreshMonstersDisplay();
+            RefreshItems();
+            RefreshStats();
+            UpdateLocations();
+        }
+
     }
+       
 }

@@ -3,20 +3,23 @@ using Game.Engine.CharacterClasses;
 using Game.Engine.Items;
 using Game.Engine.Skills;
 using System.Collections.Generic;
+using System;
 
 namespace Game.Engine
 {
     // the "main" class that commands the entire gameflow
     // in this file, only fields and properties are gathered
+
+    [Serializable]
     public partial class GameSession
     {
         private int playerPosTop, playerPosLeft;
-        private GamePage parentPage;
+        [NonSerialized] private GamePage parentPage;
         private MapMatrix mapMatrix;
-        private List<int> itemPositions;
-        private List<Item> items;
-        private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-        private System.Windows.Forms.Timer timerPlayer = new System.Windows.Forms.Timer();
+        private List<int> itemPositions; // all item positions
+        private List<Item> items; // active items only
+        [NonSerialized] private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        [NonSerialized] private System.Windows.Forms.Timer timerPlayer = new System.Windows.Forms.Timer();
         public Player currentPlayer { get; set; }
         public bool[] AvailableMoves; // W,S,A,D
         public string CurrentKey { private get; set; }
@@ -49,7 +52,7 @@ namespace Game.Engine
                 UpdateLocations();
             }
         }
-        public GameSession(double stepSize, GamePage parentPage)
+        public GameSession(GamePage parentPage)
         {
             // core
             this.parentPage = parentPage;
@@ -74,7 +77,6 @@ namespace Game.Engine
             }
             AvailableMoves = new bool[4];
             UpdateLocations();
-            // test
         }
 
     }

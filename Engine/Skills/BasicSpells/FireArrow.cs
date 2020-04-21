@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicSkills
 {
+    [Serializable]
     class FireArrow : Skill
     {
         // fire arrow: [Pr]% chance to land an arrow that deals 0.5*[Mp] damage

@@ -12,6 +12,8 @@ namespace Game.Engine
     // 1 - normal terrain (walkable, but nothing happens)
     // 1000 - battle with a monster
     // anything else - some event will occur
+    
+    [Serializable]
     class MapMatrix
     {
         private Dictionary<int, MonsterFactory> monDict;

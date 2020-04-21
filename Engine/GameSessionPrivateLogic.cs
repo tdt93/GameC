@@ -72,7 +72,7 @@ namespace Game.Engine
             }
             return false;
         }
-        private void InsertItemToGrid(Item it, int i)
+        public void InsertItemToGrid(Item it, int i)
         {
             // inform the display that a new item has been inserted
             Image img = it.GetImage();
@@ -186,6 +186,22 @@ namespace Game.Engine
                             Item tmp = Index.ProduceSpecificItem(img.Name);
                             SendText(tmp.PublicName + ": " + tmp.GoldValue + " gold");
                         }
+                    }
+                }
+            }
+        }
+        public void RefreshMonstersDisplay()
+        {
+            // refresh display of all monsters
+            Image img;
+            for (int y = 0; y < mapMatrix.Height; y++)
+            {
+                for (int x = 0; x < mapMatrix.Width; x++)
+                {
+                    img = mapMatrix.HintMonsterImage(x, y);
+                    if (img != null)
+                    {
+                        parentPage.UpdateMonster(mapMatrix.Width * y + x, img, mapMatrix.Width);
                     }
                 }
             }

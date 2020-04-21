@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Monsters
 {
+    [Serializable]
     class Rat : Monster
     {
         // example monster: rat

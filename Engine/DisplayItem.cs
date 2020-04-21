@@ -10,6 +10,7 @@ namespace Game.Engine
 {
     // this class would be better designed as an interface
     // but it would break compatibility with C# 7.3 and earlier versions so I decided to use an abstract class
+    [Serializable]
     public abstract class DisplayItem
     {
         public string Name { get; protected set;  }

@@ -4,6 +4,7 @@ using Game.Engine.CharacterClasses;
 
 namespace Game.Engine.Skills.BasicSkills
 {
+    [Serializable]
     class WindGust : Skill
     {
         // wind gust: deal 5+0.3*[Mp] damage

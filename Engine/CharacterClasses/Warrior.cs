@@ -4,6 +4,7 @@ using Game.Engine.Skills;
 
 namespace Game.Engine.CharacterClasses
 {
+    [Serializable]
     class Warrior : Player
     {
         // warrior class  - overrides only initial statistics and levelling up 

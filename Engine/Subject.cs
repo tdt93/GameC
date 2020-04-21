@@ -8,6 +8,7 @@ namespace Game.Engine
 {
     // monsters and players are subjects
     // nothing important happens here, just a bunch of properties are defined
+    [Serializable]
     public abstract class Subject : DisplayItem
     {
         protected int health, strength, armor, precision, magicPower, stamina;

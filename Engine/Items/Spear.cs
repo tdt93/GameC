@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Items
 {
+    [Serializable]
     abstract class Spear : Item
     {
         // same as Item class, but IsSpear is set to true

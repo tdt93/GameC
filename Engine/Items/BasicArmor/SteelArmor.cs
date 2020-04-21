@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game.Engine.Items.BasicArmor
 {
+    [Serializable]
     class SteelArmor : Item
     {
         // no special effects, but stronger than other BasicArmors
