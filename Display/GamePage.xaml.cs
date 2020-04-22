@@ -35,7 +35,7 @@ namespace Game.Display
         private int prevX { get { return pageData.prevX; } set { pageData.prevX = value; } }
         private int prevY { get { return pageData.prevY; } set { pageData.prevY = value; } }
         protected string lastMove { get { return pageData.lastMove; } set { pageData.lastMove = value; } }
-        public GamePage(MainWindow frame)
+        public GamePage(MainWindow frame, string playerChoice)
         {
             InitializeComponent();
             frameRef = frame;
@@ -43,7 +43,7 @@ namespace Game.Display
             pageData = new PageData(this);
             // start game
             monsterImages = new Dictionary<int, Image>();
-            currentSession = new GameSession(this);
+            currentSession = new GameSession(this, playerChoice);
             Grid.SetColumn(Player, currentSession.PlayerPosLeft);
             Grid.SetRow(Player, currentSession.PlayerPosTop);
             // prepare animations

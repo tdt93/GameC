@@ -20,5 +20,12 @@ namespace Game
         {
             this.ParentFrame.Navigate(new Display.MenuPage(this)); // go to the menu page
         }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Dispatcher.DisableProcessing();
+            Application.Current.Dispatcher.InvokeShutdown();
+            Application.Current.Shutdown();
+        }
     }
 }

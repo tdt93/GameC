@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
+using System.Windows.Navigation;
 
 namespace Game.Display
 {
@@ -20,8 +20,13 @@ namespace Game.Display
         }
         private void StartGame(object sender, RoutedEventArgs e)
         {
-            GamePage gamePage = new GamePage(frameRef); // create a new GamePage
-            frameRef.ParentFrame.Navigate(gamePage); // switch priority from MenuPage to GamePage
+            StartingChoicePage scPage = new StartingChoicePage(frameRef, this); // create a new StartingChoicePage
+            frameRef.ParentFrame.Navigate(scPage); // switch priority from MenuPage to StartingChoicePage
+        }
+        public void StartGameRun(string data)
+        {
+            GamePage gamePage = new GamePage(frameRef, data); 
+            frameRef.ParentFrame.Navigate(gamePage);
         }
         private void LoadGame(object sender, RoutedEventArgs e)
         {
@@ -31,7 +36,7 @@ namespace Game.Display
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                GamePage gamePage = new GamePage(frameRef); // create a new GamePage
+                GamePage gamePage = new GamePage(frameRef, null); // create a new GamePage
                 frameRef.ParentFrame.Navigate(gamePage); // switch priority from MenuPage to GamePage
                 gamePage.LoadGame(dlg.FileName);
             }
@@ -40,5 +45,6 @@ namespace Game.Display
         {
             System.Windows.Application.Current.Shutdown(); //close the application
         }
+
     }
 }

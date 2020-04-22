@@ -16,10 +16,10 @@ namespace Game.Engine
     [Serializable]
     class MapMatrix
     {
-        private Dictionary<int, MonsterFactory> monDict;
         private int monsters = 5;
-
-        public int[,] Matrix;
+        private Dictionary<int, MonsterFactory> monDict;
+        public Dictionary<int, Monster> stored { get; set; }
+        public int[,] Matrix { get; set; }
         public int Width { get; set; } = 25;
         public int Height { get; set; } = 20;
 
@@ -51,6 +51,7 @@ namespace Game.Engine
             Matrix[2, 7] = 2;
 
             InitializeFactoryList();
+            stored = new Dictionary<int, Monster>();
         }
 
         public MapMatrix(string s)
@@ -98,6 +99,7 @@ namespace Game.Engine
         // produce or hint monsters
         public Monster CreateMonster(int x, int y, int playerLevel)
         {
+            if (stored.ContainsKey(y * Width + x) && stored[y * Width + x] != null) return stored[y * Width + x];
             if (monDict.ContainsKey(y * Width + x) && monDict[y * Width + x] != null)
             {
                 return monDict[y * Width + x].Create(playerLevel);

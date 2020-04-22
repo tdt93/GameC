@@ -249,10 +249,15 @@ namespace Game.Engine
                         BattleScene newBattleScene = new BattleScene(parentPage, currentPlayer, monster);
                         Battle newBattle = new Battle(this, newBattleScene, monster);
                         newBattle.Run();
-                        parentPage.UpdateMonster(mapMatrix.Width * PlayerPosTop + PlayerPosLeft, mapMatrix.HintMonsterImage(playerPosLeft, playerPosTop), mapMatrix.Width);
+                        if (newBattle.battleResult)
+                        {
+                            parentPage.UpdateMonster(mapMatrix.Width * PlayerPosTop + PlayerPosLeft, mapMatrix.HintMonsterImage(playerPosLeft, playerPosTop), mapMatrix.Width);
+                            UpdateStat(7, monster.XPValue);
+                            mapMatrix.stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = null; // this monster was defeated
+                        }
+                        else mapMatrix.stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = monster; // remember this monster until the next time
                         // restore position from before the battle
                         parentPage.MovePlayer("reverse");
-                        UpdateStat(7, monster.XPValue);
                     }
                 }
                 catch (IndexOutOfRangeException e)

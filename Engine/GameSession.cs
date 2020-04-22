@@ -4,6 +4,8 @@ using Game.Engine.Items;
 using Game.Engine.Skills;
 using System.Collections.Generic;
 using System;
+using Game.Engine.Skills.BasicWeaponMoves;
+using Game.Engine.Skills.BasicSkills;
 
 namespace Game.Engine
 {
@@ -52,11 +54,12 @@ namespace Game.Engine
                 UpdateLocations();
             }
         }
-        public GameSession(GamePage parentPage)
+        public GameSession(GamePage parentPage, string playerChoice)
         {
             // core
             this.parentPage = parentPage;
             currentPlayer = new Mage(this);
+            if (playerChoice != null) { if (playerChoice.Contains("Warrior")) currentPlayer = new Warrior(this); }
             itemPositions = new List<int>();
             items = new List<Item>();
             parentPage.AddConsoleText("Welcome to the game!");
@@ -77,6 +80,35 @@ namespace Game.Engine
             }
             AvailableMoves = new bool[4];
             UpdateLocations();
+            // starting skills and items
+            if (playerChoice != null)
+            {
+                if (playerChoice.Contains("Axe"))
+                {
+                    ProduceItem("item0003");
+                    currentPlayer.Learn(new AxeCut());
+                }
+                else if (playerChoice.Contains("Sword"))
+                {
+                    ProduceItem("item0004");
+                    currentPlayer.Learn(new SwordSlash());
+                }
+                else if (playerChoice.Contains("Spear"))
+                {
+                    ProduceItem("item0002");
+                    currentPlayer.Learn(new SpearStab());
+                }
+                else if (playerChoice.Contains("Fire"))
+                {
+                    ProduceItem("item0001");
+                    currentPlayer.Learn(new FireArrow());
+                }
+                else if (playerChoice.Contains("Wind"))
+                {
+                    ProduceItem("item0001");
+                    currentPlayer.Learn(new WindGust());
+                }
+            }      
         }
 
     }

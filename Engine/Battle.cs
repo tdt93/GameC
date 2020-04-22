@@ -13,6 +13,7 @@ namespace Game.Engine
         protected BattleScene battleScene;
         protected int hpCopy, strCopy, armCopy, prCopy, mgCopy, staCopy; // after the battle, all statistics of the player are restored
         public Monster Monster { get; set; }
+        public bool battleResult { get; private set; } = false; // has the player won?
         public Battle(GameSession ses, BattleScene scene, Monster monster) : base("battle0001", ses)
         {
             Monster = monster;
@@ -36,9 +37,9 @@ namespace Game.Engine
                 if(parentSession.currentPlayer.ListAvailableSkills().Count == 0) // player has run out of stamina
                 {
                     RestorePlayerState();
-                    battleScene.SendColorText("Defeat!", "red");
-                    parentSession.Wait(300);
-                    parentSession.SendText("You lost!");
+                    battleScene.SendColorText("No more skills to use - defeat!", "red");
+                    parentSession.Wait(100);
+                    parentSession.SendText("No more skills to use - you lost the battle!");
                     battleScene.EndDisplay();
                     return;
                 }
@@ -58,9 +59,9 @@ namespace Game.Engine
                 parentSession.UpdateStat(6, -1*playerResponse.StaminaCost);
                 battleScene.SetSkills(parentSession.currentPlayer.ListAvailableSkills());
                 battleScene.ResetChoice();
-                //ReportStats();  
             }
             // restore player state
+            battleResult = true;
             RestorePlayerState();
             battleScene.SendColorText("Victory!", "green");
             parentSession.Wait(300);

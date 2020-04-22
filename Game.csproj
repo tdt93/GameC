@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Display\StartingChoicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,6 +104,9 @@
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Display\GamePageData.cs" />
+    <Compile Include="Display\StartingChoicePage.xaml.cs">
+      <DependentUpon>StartingChoicePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Engine\Battle.cs" />
     <Compile Include="Engine\CharacterClasses\Mage.cs" />
     <Compile Include="Engine\CharacterClasses\Warrior.cs" />

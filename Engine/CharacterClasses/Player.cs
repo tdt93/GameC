@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
+using Game.Display;
 using Game.Engine.Skills;
 
 namespace Game.Engine.CharacterClasses
@@ -21,7 +23,14 @@ namespace Game.Engine.CharacterClasses
             {
                 if (value < 0) health = 0;
                 else health = value;
-                // if (health == 0)  //przegrana
+                if (health == 0)
+                {
+                    parentSession.SendText("");
+                    parentSession.SendText("***********************************************************************************************");
+                    parentSession.SendText("You lost! Press any key to continue.");
+                    parentSession.GetKeyResponse();
+                    Application.Current.Shutdown();
+                }
             }
         }
         public override int Strength
@@ -199,7 +208,7 @@ namespace Game.Engine.CharacterClasses
                 if (key == "1") Learn(learningSkills[0]);
             }
         }
-        protected virtual void Learn(Skill skill)
+        public virtual void Learn(Skill skill)
         {
             // a method that helps LearnNewSkill
             // new skill means we just add it to the list
