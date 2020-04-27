@@ -2,30 +2,39 @@
 using System.Collections.Generic;
 using Game.Engine.Monsters.MonsterFactories;
 using Game.Engine.Monsters;
+using System.Windows;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Game.Engine
 {
     // container class for an integer matrix that represents game map grid
-    // unfortunately there seems to be no simpler way than just hardcoding it for each map image (may be revised in the future... )
     // map codes:
-    // 0 - unavailable terrain (the character cannot go there)
+    // 0 - unpassable terrain (the character cannot go there)
     // 1 - normal terrain (walkable, but nothing happens)
     // 1000 - battle with a monster
+    // 2000 to 2999 - portal to another map
+    // -1 to -999 - unpassable terrain (just like 0 but with nicer display)
     // anything else - some event will occur
     
     [Serializable]
     class MapMatrix
     {
-        private int monsters = 5;
+        // map parameters
+        private int monsters = 10;
+        private int walls = 10;
+
+        // other fields and properties
         private Dictionary<int, MonsterFactory> monDict;
+        private Random rng;
         public Dictionary<int, Monster> stored { get; set; }
         public int[,] Matrix { get; set; }
         public int Width { get; set; } = 25;
         public int Height { get; set; } = 20;
 
-        public MapMatrix()
+        public MapMatrix(List<int> portals, int randomCode)
         {
             Matrix = new int[Height, Width];
+            rng = new Random(randomCode);
             // make map walkable
             for (int y = 1; y < Height - 1; y++)
             {
@@ -34,51 +43,16 @@ namespace Game.Engine
                     Matrix[y, x] = 1;
                 }
             }
-            // decorate with monsters
-            Random rng = new Random();
-            for (int i = 0; i < monsters; i++)
-            {
-                int x = rng.Next(8, Width - 1); // 8 is temporary fix
-                int y = rng.Next(8, Height - 1);
-                Matrix[y, x] = 1000;
-            }
-            // temporary fixes
-            Matrix[1, 3] = 0;
-            Matrix[1, 5] = 0;
-            Matrix[1, 7] = 0;
-            Matrix[2, 3] = 3;
-            Matrix[2, 5] = 4;
-            Matrix[2, 7] = 2;
-
+            // decorate map with stuff
+            DecorateWithObstacles();
+            DecorateWithPortals(portals);
+            DecorateWithMonsters();
+            // trim walls
+            for (int y = 0; y < Height; y++) Matrix[y, Width - 1] = 0;
+            for (int x = 0; x < Width; x++) Matrix[Height - 1, x] = 0;
+            // initialize 
             InitializeFactoryList();
             stored = new Dictionary<int, Monster>();
-        }
-
-        public MapMatrix(string s)
-        {
-            //a predefined map - for testing purposes, mostly obsolete now
-            Matrix = new int[20, 25] {
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,0,0,1,1,0 },
-            { 0,0,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,0,0,0,0,1,0 },
-            { 0,0,1,1,1,0,0,0,1,1,1,0,1,1,1,0,0,1,1,1,0,0,1,1,0 },
-            { 0,0,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-            { 0,0,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1,0 },
-            { 0,0,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0 },
-            { 0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1,0 },
-            { 0,0,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,0 },
-            { 0,0,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,0 },
-            { 0,0,0,0,0,0,3,0,0,0,0,0,1,1,1,2,1,1,1,1,1,1,1,1,0 },
-            { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-            { 0,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1000,1,0 },
-            { 0,1,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0 },
-            { 0,0,0,0,0,1,0,0,1,1,1,0,0,0,1,1,1,1,1,1,0,0,1,1,0 },
-            { 0,1,0,0,1,0,0,0,0,1,1,1,1,1000,1,1,1,1,1,0,0,0,0,1,0 },
-            { 0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0 },
-            { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-            { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } };
-            InitializeFactoryList();
         }
 
         private void InitializeFactoryList()
@@ -113,6 +87,126 @@ namespace Game.Engine
                 return monDict[y * Width + x].Hint();
             }
             return null;
+        }
+
+        // decorate map with stuff
+        private void DecorateWithObstacles()
+        {
+            // for cleaner code
+            int y0 = 1;
+            int ym = Height - 2;
+            int x0 = 1;
+            int xm = Width - 2;
+            // external walls
+            for (int y = y0; y < ym; y++)
+            {
+                Matrix[y, x0] = -1;
+                Matrix[y, xm] = -1;
+            }
+            for (int x = x0; x <= xm; x++) // = is for edges
+            {
+                Matrix[y0, x] = -1;
+                Matrix[ym, x] = -1;
+            }
+            // internal walls
+            for (int i = 0; i < walls; i++)
+            {
+                int start, length;
+                switch (rng.Next(4))
+                {
+                    case 0:
+                        start = rng.Next(xm - x0 - 1);
+                        length = rng.Next(1, Width / 2 - 2);
+                        for (int l = 0; l < length; l++)
+                        {
+                            Matrix[y0 + l, start] = -1;
+                        }
+                        break;
+                    case 1:
+                        start = rng.Next(xm - x0 - 1);
+                        length = rng.Next(1, Width / 2 - 2);
+                        for (int l = 0; l < length; l++)
+                        {
+                            Matrix[ym - l, start] = -1;
+                        }
+                        break;
+                    case 2:
+                        start = rng.Next(ym - y0 - 1);
+                        length = rng.Next(1, Height / 2 - 2);
+                        for (int l = 0; l < length; l++)
+                        {
+                            Matrix[start, x0 + l] = -1;
+                        }
+                        break;
+                    case 3:
+                        start = rng.Next(ym - y0 - 1);
+                        length = rng.Next(1, Height / 2 - 2);
+                        for (int l = 0; l < length; l++)
+                        {
+                            Matrix[start, xm - l] = -1;
+                        }
+                        break;
+                }
+            }
+            // keep passages open
+            for (int x = x0 + 2; x < xm - 2; x++)
+            {
+                for (int y = y0 + 2; y < ym - 2; y++)
+                {
+                    if (Matrix[y - 1, x] == -1 && Matrix[y, x - 1] == -1) { Matrix[y - 1, x] = 1; Matrix[y, x - 1] = 1; }
+                    if (Matrix[y + 1, x] == -1 && Matrix[y, x - 1] == -1) { Matrix[y + 1, x] = 1; Matrix[y, x - 1] = 1; }
+                    if (Matrix[y - 1, x] == -1 && Matrix[y, x + 1] == -1) { Matrix[y - 1, x] = 1; Matrix[y, x + 1] = 1; }
+                    if (Matrix[y + 1, x] == -1 && Matrix[y, x + 1] == -1) { Matrix[y + 1, x] = 1; Matrix[y, x + 1] = 1; }
+                }
+            }
+        }
+        private void DecorateWithPortals(List<int> portals)
+        {
+            Random rng = new Random();
+            foreach (int portal in portals)
+            {
+                while (true)
+                {
+                    int x = rng.Next(2, Width - 2);
+                    int y = rng.Next(2, Height - 2);
+                    if (ValidPortalPlace(x, y))
+                    {
+                        Matrix[y, x] = 2000 + portal;
+                        break;
+                    }
+                }
+            }
+        }
+        private void DecorateWithMonsters()
+        {
+            Random rng = new Random();
+            for (int i = 0; i < monsters; i++)
+            {
+                int x = rng.Next(2, Width - 2); 
+                int y = rng.Next(2, Height - 2);
+                if (Matrix[y, x] != 1)
+                {
+                    i--;
+                    continue;
+                }
+                Matrix[y, x] = 1000;
+            }
+        }
+
+        // utility
+        private bool ValidLocationPlace(int x, int y)
+        {
+            if (x < 1 || y < 1 || x > Width - 2 || y > Height - 2) return false;
+            if (Matrix[y, x - 1] != 1 && Matrix[y, x + 1] != 1) return false;
+            if (Matrix[y - 1, x] != 1 && Matrix[y + 1, x] != 1) return false;
+            return true;
+        }
+        private bool ValidPortalPlace(int x, int y)
+        {
+            if (x < 1 || y < 1 || x > Width - 2 || y > Height - 2) return false;
+            if ((Matrix[y, x - 1] != 1 && Matrix[y, x + 1] != 1) && (Matrix[y - 1, x] == 1 && Matrix[y + 1, x] == 1)) return false;
+            if ((Matrix[y - 1, x] != 1 && Matrix[y + 1, x] != 1) && (Matrix[y, x - 1] == 1 && Matrix[y, x + 1] == 1)) return false;
+            return true;
         }
 
     }

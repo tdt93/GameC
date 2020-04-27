@@ -27,7 +27,10 @@ namespace Game.Display
         protected FrameworkElement draggedImage;
         protected Point gridPosition;
         protected Point mousePosition;
+        // track these so we can update them later
         protected Dictionary<int, Image> monsterImages;
+        protected List<Image> obstacleImages;
+        protected List<Image> portalImages;
         public bool RemovableItems { get; set; }
         public bool Movable { get; set; }
         public bool ItemSellFlag { get; set; }
@@ -43,6 +46,8 @@ namespace Game.Display
             pageData = new PageData(this);
             // start game
             monsterImages = new Dictionary<int, Image>();
+            obstacleImages = new List<Image>();
+            portalImages = new List<Image>();
             currentSession = new GameSession(this, playerChoice);
             Grid.SetColumn(Player, currentSession.PlayerPosLeft);
             Grid.SetRow(Player, currentSession.PlayerPosTop);
@@ -212,6 +217,61 @@ namespace Game.Display
                 WorldGrid.Children.Add(monsterImages[key]);
                 Grid.SetRow(monsterImages[key], key / modulo);
                 Grid.SetColumn(monsterImages[key], key % modulo);
+            }
+        }
+
+        // display obstacles
+        public void AddObstacle(int x, int y, int number)
+        {
+            try
+            {
+                Image img = new Image();
+                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("obstacle" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                WorldGrid.Children.Add(img);
+                obstacleImages.Add(img);
+                Grid.SetColumn(img, x);
+                Grid.SetRow(img, y);
+            }
+            catch(Exception e)
+            {
+                AddConsoleText(e.Message);
+                AddConsoleText("Image not found: obstacle" + (number.ToString()).PadLeft(4, '0') + ".png");
+            }  
+        }
+
+        public void AddPortal(int x, int y)
+        {
+            int number = 1;
+            try
+            {
+                Image img = new Image();
+                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("portal" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                WorldGrid.Children.Add(img);
+                portalImages.Add(img);
+                Grid.SetColumn(img, x);
+                Grid.SetRow(img, y);
+            }
+            catch (Exception e)
+            {
+                AddConsoleText(e.Message);
+                AddConsoleText("Image not found: portal" + (number.ToString()).PadLeft(4, '0') + ".png");
+            }
+
+        }
+
+        // when changing map, clear map items
+        public void ClearMap()
+        {
+            try
+            {
+                foreach (KeyValuePair<int, Image> kvp in monsterImages) WorldGrid.Children.Remove(monsterImages[kvp.Key]);
+                monsterImages.Clear();
+                foreach (Image i in obstacleImages) WorldGrid.Children.Remove(i);
+                foreach (Image i in portalImages) WorldGrid.Children.Remove(i);
+            }
+            catch (Exception e)
+            {
+                AddConsoleText(e.Message);
             }
         }
 

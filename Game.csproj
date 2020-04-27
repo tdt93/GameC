@@ -136,6 +136,7 @@
     <Compile Include="Engine\Items\Staff.cs" />
     <Compile Include="Engine\Items\Sword.cs" />
     <Compile Include="Engine\MapMatrix.cs" />
+    <Compile Include="Engine\MetaMapMatrix.cs" />
     <Compile Include="Engine\Monsters\Monster.cs" />
     <Compile Include="Engine\CharacterClasses\Player.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\MonsterFactory.cs" />
@@ -230,6 +231,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\obstacle0001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\obstacle0002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\portal0001.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

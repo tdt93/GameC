@@ -33,6 +33,7 @@ namespace Game.Engine
             RefreshMonstersDisplay();
             RefreshItems();
             RefreshStats();
+            InitializeMapDisplay(metaMapMatrix.GetPreviousMatrixCode() + 2000);
             UpdateLocations();
         }
 

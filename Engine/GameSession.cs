@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System;
 using Game.Engine.Skills.BasicWeaponMoves;
 using Game.Engine.Skills.BasicSkills;
+using System.Windows.Documents;
+using System.Windows.Controls;
 
 namespace Game.Engine
 {
@@ -17,6 +19,7 @@ namespace Game.Engine
     {
         private int playerPosTop, playerPosLeft;
         [NonSerialized] private GamePage parentPage;
+        private MetaMapMatrix metaMapMatrix;
         private MapMatrix mapMatrix;
         private List<int> itemPositions; // all item positions
         private List<Item> items; // active items only
@@ -65,21 +68,10 @@ namespace Game.Engine
             parentPage.AddConsoleText("Welcome to the game!");
             RefreshStats();
             // map
-            playerPosLeft = 1;
-            playerPosTop = 3;
-            mapMatrix = new MapMatrix();
-            for (int i = 0; i < mapMatrix.Width; i++)
-            {
-                for (int j = 0; j < mapMatrix.Height; j++)
-                {
-                    if (mapMatrix.Matrix[j, i] == 1000) // scan rows first
-                    {
-                        parentPage.AddMonster(j * mapMatrix.Width + i, mapMatrix.HintMonsterImage(i,j), mapMatrix.Width);
-                    }
-                }
-            }
+            metaMapMatrix = new MetaMapMatrix();
+            mapMatrix = metaMapMatrix.GetCurrentMatrix(0);
             AvailableMoves = new bool[4];
-            UpdateLocations();
+            InitializeMapDisplay(0);
             // starting skills and items
             if (playerChoice != null)
             {
@@ -109,6 +101,76 @@ namespace Game.Engine
                     currentPlayer.Learn(new WindGust());
                 }
             }      
+        }
+
+        private void InitializeMapDisplay(int codeNumber)
+        {
+            parentPage.ClearMap();
+            for (int i = 0; i < mapMatrix.Width; i++)
+            {
+                for (int j = 0; j < mapMatrix.Height; j++)
+                {
+                    // scan rows first
+                    if (mapMatrix.Matrix[j, i] >= 2000 && mapMatrix.Matrix[j, i] < 3000)
+                    {
+                        parentPage.AddPortal(i, j);
+                    }
+                    else if (mapMatrix.Matrix[j, i] == 1000)
+                    {
+                        parentPage.AddMonster(j * mapMatrix.Width + i, mapMatrix.HintMonsterImage(i, j), mapMatrix.Width);
+                    }
+                    else if (mapMatrix.Matrix[j, i] < 0)
+                    {
+                        parentPage.AddObstacle(i, j, -1 * mapMatrix.Matrix[j, i]);
+                    }
+                }
+            }
+            // move player
+            if (codeNumber == 0)
+            {
+                bool found = false;
+                for (int x = mapMatrix.Width - 2; x > 2; x--)
+                {
+                    for (int y = 2; y < mapMatrix.Height - 2; y++)
+                    {
+                        if (mapMatrix.Matrix[y, x] == 1)
+                        {
+                            playerPosLeft = x;
+                            playerPosTop = y;
+                            Grid.SetColumn(parentPage.Player, x);
+                            Grid.SetRow(parentPage.Player, y);
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
+            }
+            else
+            {
+                bool found = false;
+                for (int x = mapMatrix.Width - 2; x > 2; x--)
+                {
+                    for (int y = 2; y < mapMatrix.Height - 2; y++)
+                    {
+                        if (mapMatrix.Matrix[y, x] == codeNumber)
+                        {
+                            playerPosLeft = x;
+                            playerPosTop = y;
+                            Grid.SetColumn(parentPage.Player, x);
+                            Grid.SetRow(parentPage.Player, y);
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
+            }
+            Grid.SetColumn(parentPage.Player, playerPosLeft);
+            Grid.SetRow(parentPage.Player, playerPosTop);
+            AvailableMoves[0] = AvailableMoves[1] = AvailableMoves[2] = AvailableMoves[3] = false;
+            if (playerPosLeft > 0 && mapMatrix.Matrix[playerPosTop, playerPosLeft - 1] > 0) AvailableMoves[2] = true;
+            if (playerPosLeft < mapMatrix.Width && mapMatrix.Matrix[playerPosTop, playerPosLeft + 1] > 0) AvailableMoves[3] = true;
+            if (playerPosTop > 0 && mapMatrix.Matrix[playerPosTop - 1, playerPosLeft] > 0) AvailableMoves[0] = true;
+            if (playerPosTop < mapMatrix.Height && mapMatrix.Matrix[playerPosTop + 1, playerPosLeft] > 0) AvailableMoves[1] = true;
         }
 
     }

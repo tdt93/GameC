@@ -220,31 +220,31 @@ namespace Game.Engine
              * Be careful, though, since it means the movement will not be smooth around interactions by default
              * If you want smooth movement for some specific interaction, you need to overwrite IgnoreNextKey inside the relevant if-clause
              */
-            if (code > 1) parentPage.IgnoreNextKey = true; 
+            if (code > 1) parentPage.IgnoreNextKey = true;
 
-            // 2-4 are temporary codes
+            // 2-4 are temporary codes for testing
             if (code == 2)
             {
                 IInteraction inter = new ItemSellInteraction(this);
                 inter.Run();
             }
-            else if(code == 3)
+            else if (code == 3)
             {
                 SendText("\nHere is your magic training and magic staff.");
                 currentPlayer.XP += 150;
                 ProduceItem("item0001");
             }
-            else if(code == 4)
+            else if (code == 4)
             {
                 SendText("Here is your armor.");
                 AddRandomClassItem();
             }
-            else if(code == 1000)
+            else if (code == 1000)
             {
-                try 
+                try
                 {
                     Monster monster = mapMatrix.CreateMonster(playerPosLeft, playerPosTop, currentPlayer.Level);
-                    if(monster != null)
+                    if (monster != null)
                     {
                         BattleScene newBattleScene = new BattleScene(parentPage, currentPlayer, monster);
                         Battle newBattle = new Battle(this, newBattleScene, monster);
@@ -265,6 +265,11 @@ namespace Game.Engine
                     parentPage.AddConsoleText("An attempt was made to create a monster but something went wrong. Did you remember to update the Index class?");
                     parentPage.AddConsoleText(e.Message);
                 }
+            }
+            else if (code >= 2000 && code < 3000)
+            {
+                mapMatrix = metaMapMatrix.GetCurrentMatrix(code - 2000);
+                InitializeMapDisplay(metaMapMatrix.GetPreviousMatrixCode() + 2000);
             }
         }
 
