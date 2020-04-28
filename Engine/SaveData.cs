@@ -30,10 +30,10 @@ namespace Game.Engine
             parentPage = page;
             timer = new System.Windows.Forms.Timer();
             timerPlayer = new System.Windows.Forms.Timer();
+            InitializeMapDisplay(-1); // don't move player - this will be handled seprately
             RefreshMonstersDisplay();
             RefreshItems();
             RefreshStats();
-            InitializeMapDisplay(metaMapMatrix.GetPreviousMatrixCode() + 2000);
             UpdateLocations();
         }
 

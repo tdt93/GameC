@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Collections.Generic;
 using Game.Engine.Items;
+using Game.Engine.Skills;
 
 namespace Game.Engine
 {
@@ -15,6 +16,9 @@ namespace Game.Engine
             // no need to put an enter at the end/beginning
             parentPage.AddConsoleText(text);
         }
+
+
+        /***************************        KEYBOARD      ***************************/
         public Tuple<string,int> GetKeyResponse()
         {
             // usage: GetKeyResponse().Item1 will return the capital letter corresponding to the next key pressed by the user
@@ -59,6 +63,9 @@ namespace Game.Engine
             parentPage.Movable = true;
             return new Tuple<string, int>(CurrentKey, (int)watch.ElapsedMilliseconds);
         }
+
+
+        /***************************        ITEMS      ***************************/
         public List<string> GetActiveItemNames()
         {
             // return names of all currently active items (max 5) as List<string>
@@ -105,12 +112,9 @@ namespace Game.Engine
         }
         public void AddRandomClassItem()
         {
-            // player wins a random item that is guaranteed to fit their class
+            // player receives a random item that is guaranteed to fit their class
             // (e.g. a warrior will not get magic staffs and a mage will not get axes, swords or spears)
-            Item it;
-            if (currentPlayer.ClassName == "Mage") it = Index.RandomNonWeaponItem();
-            else if (currentPlayer.ClassName == "Warrior") it = Index.RandomNonMagicItem();
-            else it = Index.RandomItem();
+            Item it = Index.RandomClassItem(currentPlayer);
             for (int i = 0; i < 30; i++)
             {
                 if (!itemPositions.Contains(i))
@@ -122,7 +126,7 @@ namespace Game.Engine
         }
         public void AddRandomItem()
         {
-            // player wins a random item (no class restrictions)
+            // player receives a random item (no class restrictions)
             Item it = Index.RandomItem();
             for (int i = 0; i < 30; i++)
             {
@@ -133,6 +137,33 @@ namespace Game.Engine
                 }
             }
         }
+        public void AddThisItem(Item it)
+        {
+            // player receives a particular item
+            // you may want to use this method together with Index methods for item production:
+            // Index.RandomItem() for random item
+            // Index.RandomClassItem() for random class-suitable item
+            for (int i = 0; i < 30; i++)
+            {
+                if (!itemPositions.Contains(i))
+                {
+                    InsertItemToGrid(it, i);
+                    break;
+                }
+            }
+        }
+
+
+        /***************************        SKILLS      ***************************/
+        public void LearnThisSkill(Skill sk)
+        {
+            // player learns a particular skill
+            // if you use this method, you should know exactly what skill you want the player to learn
+            currentPlayer.Learn(sk);
+        }
+
+
+        /***************************        PLAYER STATISTICS      ***************************/
         public void UpdateStat(int number, int value)
         {
             // use this method to change player statistics

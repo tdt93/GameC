@@ -5,6 +5,7 @@ using Game.Engine.Monsters.MonsterFactories;
 using Game.Engine.Items;
 using Game.Engine.Items.ItemFactories;
 using Game.Engine.Items.BasicArmor;
+using Game.Engine.Interactions;
 
 namespace Game.Engine
 {

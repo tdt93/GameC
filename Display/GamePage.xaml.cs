@@ -31,6 +31,7 @@ namespace Game.Display
         protected Dictionary<int, Image> monsterImages;
         protected List<Image> obstacleImages;
         protected List<Image> portalImages;
+        protected List<Image> interactionImages;
         public bool RemovableItems { get; set; }
         public bool Movable { get; set; }
         public bool ItemSellFlag { get; set; }
@@ -48,6 +49,7 @@ namespace Game.Display
             monsterImages = new Dictionary<int, Image>();
             obstacleImages = new List<Image>();
             portalImages = new List<Image>();
+            interactionImages = new List<Image>();
             currentSession = new GameSession(this, playerChoice);
             Grid.SetColumn(Player, currentSession.PlayerPosLeft);
             Grid.SetRow(Player, currentSession.PlayerPosTop);
@@ -81,8 +83,6 @@ namespace Game.Display
                 }
                 foreach (var kvp in monsterImages) WorldGrid.Children.Remove(kvp.Value);
                 currentSession.ReInitialize(this);
-                Grid.SetColumn(Player, currentSession.PlayerPosLeft);
-                Grid.SetRow(Player, currentSession.PlayerPosTop);
                 //
                 stream = new FileStream(filename + ".pgd", FileMode.Open, FileAccess.Read, FileShare.Read);
                 pageData = (PageData)formatter.Deserialize(stream);
@@ -259,6 +259,26 @@ namespace Game.Display
 
         }
 
+        public void AddInteraction(int x, int y, int number)
+        {
+            number = number - 3000;
+            try
+            {
+                Image img = new Image();
+                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("Assets/interaction" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                WorldGrid.Children.Add(img);
+                interactionImages.Add(img);
+                Grid.SetColumn(img, x);
+                Grid.SetRow(img, y);
+            }
+            catch (Exception e)
+            {
+                AddConsoleText(e.Message);
+                AddConsoleText("Image not found: interaction" + (number.ToString()).PadLeft(4, '0') + ".png");
+            }
+
+        }
+
         // when changing map, clear map items
         public void ClearMap()
         {
@@ -268,6 +288,7 @@ namespace Game.Display
                 monsterImages.Clear();
                 foreach (Image i in obstacleImages) WorldGrid.Children.Remove(i);
                 foreach (Image i in portalImages) WorldGrid.Children.Remove(i);
+                foreach (Image i in interactionImages) WorldGrid.Children.Remove(i);
             }
             catch (Exception e)
             {

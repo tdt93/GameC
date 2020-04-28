@@ -10,6 +10,7 @@ namespace Game.Engine
     [Serializable]
     class MetaMapMatrix
     {
+        private GameSession parentSession;
         // how many maps in total in the game world
         private const int maps = 25;
         private int minPortals = 35;
@@ -21,8 +22,9 @@ namespace Game.Engine
         // maps
         private MapMatrix[] matrix;
 
-        public MetaMapMatrix()
+        public MetaMapMatrix(GameSession parent)
         {
+            parentSession = parent;
             // create adjacency matrix
             Random rng = new Random();
             for (int i = 0; i < minPortals; i++)
@@ -45,7 +47,7 @@ namespace Game.Engine
             matrix = new MapMatrix[maps];
             for (int i = 0; i < maps; i++)
             {
-                matrix[i] = new MapMatrix(MakePortalsList(i), rng.Next(1000 * maps));
+                matrix[i] = new MapMatrix(parentSession, MakePortalsList(i), rng.Next(1000 * maps));
             }
         }
 

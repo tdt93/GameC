@@ -221,24 +221,12 @@ namespace Game.Engine
              * If you want smooth movement for some specific interaction, you need to overwrite IgnoreNextKey inside the relevant if-clause
              */
             if (code > 1) parentPage.IgnoreNextKey = true;
-
-            // 2-4 are temporary codes for testing
-            if (code == 2)
+            // this if will be replaced in the future
+            if (code == 3001)
             {
-                IInteraction inter = new ItemSellInteraction(this);
-                inter.Run();
+                mapMatrix.Shop.Run();
             }
-            else if (code == 3)
-            {
-                SendText("\nHere is your magic training and magic staff.");
-                currentPlayer.XP += 150;
-                ProduceItem("item0001");
-            }
-            else if (code == 4)
-            {
-                SendText("Here is your armor.");
-                AddRandomClassItem();
-            }
+            //
             else if (code == 1000)
             {
                 try
@@ -253,9 +241,9 @@ namespace Game.Engine
                         {
                             parentPage.UpdateMonster(mapMatrix.Width * PlayerPosTop + PlayerPosLeft, mapMatrix.HintMonsterImage(playerPosLeft, playerPosTop), mapMatrix.Width);
                             UpdateStat(7, monster.XPValue);
-                            mapMatrix.stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = null; // this monster was defeated
+                            mapMatrix.Stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = null; // this monster was defeated
                         }
-                        else mapMatrix.stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = monster; // remember this monster until the next time
+                        else mapMatrix.Stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = monster; // remember this monster until the next time
                         // restore position from before the battle
                         parentPage.MovePlayer("reverse");
                     }

@@ -62,13 +62,11 @@ namespace Game.Engine
         {
             return itemFactories[RNG(0, itemFactories.Count)].CreateItem();
         }
-        public static Item RandomNonMagicItem()
+        public static Item RandomClassItem(Player player)
         {
-            return itemFactories[RNG(0, itemFactories.Count)].CreateNonMagicItem();
-        }
-        public static Item RandomNonWeaponItem()
-        {
-            return itemFactories[RNG(0, itemFactories.Count)].CreateNonWeaponItem();
+            if (player.ClassName == "Mage") return itemFactories[RNG(0, itemFactories.Count)].CreateNonWeaponItem();
+            else if (player.ClassName == "Warrior") return itemFactories[RNG(0, itemFactories.Count)].CreateNonMagicItem();
+            else return itemFactories[RNG(0, itemFactories.Count)].CreateItem();
         }
 
         // produce random monster factory

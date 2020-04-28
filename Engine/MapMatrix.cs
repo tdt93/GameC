@@ -26,13 +26,18 @@ namespace Game.Engine
         // other fields and properties
         private Dictionary<int, MonsterFactory> monDict;
         private Random rng;
-        public Dictionary<int, Monster> stored { get; set; }
+        private GameSession parentSession;
+        public Dictionary<int, Monster> Stored { get; set; }
         public int[,] Matrix { get; set; }
         public int Width { get; set; } = 25;
         public int Height { get; set; } = 20;
 
-        public MapMatrix(List<int> portals, int randomCode)
+        // will be removed in the future
+        public Interactions.ItemSellInteraction Shop { get; private set; }
+
+        public MapMatrix(GameSession parent, List<int> portals, int randomCode)
         {
+            parentSession = parent;
             Matrix = new int[Height, Width];
             rng = new Random(randomCode);
             // make map walkable
@@ -52,9 +57,21 @@ namespace Game.Engine
             for (int x = 0; x < Width; x++) Matrix[0, x] = 0;
             for (int y = 0; y < Height; y++) Matrix[y, Width - 1] = 0;
             for (int x = 0; x < Width; x++) Matrix[Height - 1, x] = 0;
+            // add one shop per map (will be removed in the future when interactions get automatized)
+            Shop = new Interactions.ItemSellInteraction(parentSession);
+            while(true)
+            {
+                int h = 2 + rng.Next(Height - 4);
+                int w = 2 + rng.Next(Width - 4);
+                if (ValidPlace(w, h)) 
+                {
+                    Matrix[h, w] = 3001;
+                    break;
+                }
+            }
             // initialize 
             InitializeFactoryList();
-            stored = new Dictionary<int, Monster>();
+            Stored = new Dictionary<int, Monster>();
         }
 
         private void InitializeFactoryList()
@@ -75,7 +92,7 @@ namespace Game.Engine
         // produce or hint monsters
         public Monster CreateMonster(int x, int y, int playerLevel)
         {
-            if (stored.ContainsKey(y * Width + x) && stored[y * Width + x] != null) return stored[y * Width + x];
+            if (Stored.ContainsKey(y * Width + x) && Stored[y * Width + x] != null) return Stored[y * Width + x];
             if (monDict.ContainsKey(y * Width + x) && monDict[y * Width + x] != null)
             {
                 return monDict[y * Width + x].Create(playerLevel);
@@ -171,7 +188,7 @@ namespace Game.Engine
                 {
                     int x = rng.Next(2, Width - 2);
                     int y = rng.Next(2, Height - 2);
-                    if (ValidPortalPlace(x, y))
+                    if (ValidPlace(x, y))
                     {
                         Matrix[y, x] = 2000 + portal;
                         break;
@@ -196,14 +213,7 @@ namespace Game.Engine
         }
 
         // utility
-        private bool ValidLocationPlace(int x, int y)
-        {
-            if (x < 1 || y < 1 || x > Width - 2 || y > Height - 2) return false;
-            if (Matrix[y, x - 1] != 1 && Matrix[y, x + 1] != 1) return false;
-            if (Matrix[y - 1, x] != 1 && Matrix[y + 1, x] != 1) return false;
-            return true;
-        }
-        private bool ValidPortalPlace(int x, int y)
+        private bool ValidPlace(int x, int y)
         {
             if (x < 1 || y < 1 || x > Width - 2 || y > Height - 2) return false;
             if ((Matrix[y, x - 1] != 1 && Matrix[y, x + 1] != 1) && (Matrix[y - 1, x] == 1 && Matrix[y + 1, x] == 1)) return false;

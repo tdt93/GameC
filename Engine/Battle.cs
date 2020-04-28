@@ -14,9 +14,10 @@ namespace Game.Engine
         protected int hpCopy, strCopy, armCopy, prCopy, mgCopy, staCopy; // after the battle, all statistics of the player are restored
         public Monster Monster { get; set; }
         public bool battleResult { get; private set; } = false; // has the player won?
-        public Battle(GameSession ses, BattleScene scene, Monster monster) : base("battle0001", ses)
+        public Battle(GameSession ses, BattleScene scene, Monster monster) : base(ses)
         {
             Monster = monster;
+            Name = "battle0001";
             battleScene = scene;
             battleScene.ImgSetup = GetImage();
         }
@@ -67,6 +68,7 @@ namespace Game.Engine
             parentSession.Wait(300);
             battleScene.EndDisplay();
             parentSession.SendText("You won! XP gained: " + Monster.XPValue);
+            VictoryReward();
             //parentSession.UpdateStat(7, Monster.XPValue); // for smoother display, this one was moved to GameSession.cs
         }
         protected void CopyPlayerState()
@@ -76,7 +78,7 @@ namespace Game.Engine
             strCopy = parentSession.currentPlayer.Strength - parentSession.currentPlayer.StrengthBuff;
             armCopy = parentSession.currentPlayer.Armor - parentSession.currentPlayer.ArmorBuff;
             prCopy = parentSession.currentPlayer.Precision - parentSession.currentPlayer.PrecisionBuff;
-            mgCopy = parentSession.currentPlayer.Precision - parentSession.currentPlayer.PrecisionBuff;
+            mgCopy = parentSession.currentPlayer.MagicPower - parentSession.currentPlayer.MagicPowerBuff;
             staCopy = parentSession.currentPlayer.Stamina - parentSession.currentPlayer.StaminaBuff;
         }
         protected void RestorePlayerState()
@@ -94,6 +96,23 @@ namespace Game.Engine
         {
             battleScene.SendColorText("Your HP: " + parentSession.currentPlayer.Health + " Your Stamina: " + parentSession.currentPlayer.Stamina, "blue");
             battleScene.SendColorText("Monster HP: " + Monster.Health, "blue");
+        }
+
+        protected void VictoryReward()
+        {
+            Random RNG = new Random();
+            int test = RNG.Next(100);
+            if (test < 15)
+            {
+                parentSession.SendText("It seems the monster was guarding an interesting item.");
+                parentSession.AddRandomItem();
+            }
+            else if (test < 50)
+            {
+                int gold = 5 * (RNG.Next(9) + 1); ;
+                parentSession.SendText("It seems the monster was guarding a bag of gold (+" + gold + " gold)");
+                parentSession.currentPlayer.Gold += gold;
+            }
         }
 
     }

@@ -68,8 +68,9 @@ namespace Game.Engine
             parentPage.AddConsoleText("Welcome to the game!");
             RefreshStats();
             // map
-            metaMapMatrix = new MetaMapMatrix();
+            metaMapMatrix = new MetaMapMatrix(this);
             mapMatrix = metaMapMatrix.GetCurrentMatrix(0);
+            //mapMatrix.Matrix[15, 15] = 3001;
             AvailableMoves = new bool[4];
             InitializeMapDisplay(0);
             // starting skills and items
@@ -111,6 +112,10 @@ namespace Game.Engine
                 for (int j = 0; j < mapMatrix.Height; j++)
                 {
                     // scan rows first
+                    if (mapMatrix.Matrix[j, i] >= 3000 && mapMatrix.Matrix[j, i] < 4000)
+                    {
+                        parentPage.AddInteraction(i, j, mapMatrix.Matrix[j, i]);
+                    }
                     if (mapMatrix.Matrix[j, i] >= 2000 && mapMatrix.Matrix[j, i] < 3000)
                     {
                         parentPage.AddPortal(i, j);
@@ -145,7 +150,7 @@ namespace Game.Engine
                     if (found) break;
                 }
             }
-            else
+            else if (codeNumber > 0)
             {
                 bool found = false;
                 for (int x = mapMatrix.Width - 2; x > 2; x--)
