@@ -48,6 +48,8 @@ namespace Game.Engine
             DecorateWithPortals(portals);
             DecorateWithMonsters();
             // trim walls
+            for (int y = 0; y < Height; y++) Matrix[y, 0] = 0;
+            for (int x = 0; x < Width; x++) Matrix[0, x] = 0;
             for (int y = 0; y < Height; y++) Matrix[y, Width - 1] = 0;
             for (int x = 0; x < Width; x++) Matrix[Height - 1, x] = 0;
             // initialize 

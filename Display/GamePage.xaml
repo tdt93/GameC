@@ -21,7 +21,7 @@
 
         <!-- Column0 Row0: display the game world or an individual scene -->
         <Frame Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Name="InternalFrame" IsEnabled="False" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Name="World" Source="world.png" 
+        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Name="World" Source="Assets/world.png" 
                HorizontalAlignment="Center" VerticalAlignment="Center"  />
         <Grid Name="WorldGrid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -73,7 +73,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Image Grid.Column="10" Grid.Row="10" Name="Player" Source="player.png"  />
+            <Image Grid.Column="10" Grid.Row="10" Name="Player" Source="Assets/player.png"  />
         </Grid>
 
         <!-- Column0 Rows1-2: display console -->

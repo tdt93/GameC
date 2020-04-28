@@ -37,51 +37,13 @@ namespace Game.Display
         {
             // initialize display elements
             BattleGrid = new Grid();
-            RowDefinition gridRow1 = new RowDefinition();
-            RowDefinition gridRow2 = new RowDefinition();
-            RowDefinition gridRow3 = new RowDefinition();
-            RowDefinition gridRow4 = new RowDefinition();
-            RowDefinition gridRow5 = new RowDefinition();
-            ColumnDefinition gridColumn1 = new ColumnDefinition();
-            ColumnDefinition gridColumn2 = new ColumnDefinition();
-            BattleGrid.RowDefinitions.Add(gridRow1);
-            BattleGrid.RowDefinitions.Add(gridRow2);
-            BattleGrid.RowDefinitions.Add(gridRow3);
-            BattleGrid.RowDefinitions.Add(gridRow4);
-            BattleGrid.RowDefinitions.Add(gridRow5);
-            BattleGrid.ColumnDefinitions.Add(gridColumn1);
-            BattleGrid.ColumnDefinitions.Add(gridColumn2);
+            for (int i = 0; i < 5; i++) BattleGrid.RowDefinitions.Add(new RowDefinition());
+            for (int i = 0; i < 2; i++) BattleGrid.ColumnDefinitions.Add(new ColumnDefinition());
             // construct battle image
             Grid ImageGrid = new Grid();
             ImageGrid.Background = Brushes.Black;
-            RowDefinition igridRow1 = new RowDefinition();
-            RowDefinition igridRow2 = new RowDefinition();
-            RowDefinition igridRow3 = new RowDefinition();
-            RowDefinition igridRow4 = new RowDefinition();
-            RowDefinition igridRow5 = new RowDefinition();
-            RowDefinition igridRow6 = new RowDefinition();
-            RowDefinition igridRow7 = new RowDefinition();
-            RowDefinition igridRow8 = new RowDefinition();
-            RowDefinition igridRow9 = new RowDefinition();
-            RowDefinition igridRow10 = new RowDefinition();
-            RowDefinition igridRow11 = new RowDefinition();
-            RowDefinition igridRow12 = new RowDefinition();
-            ColumnDefinition igridColumn1 = new ColumnDefinition();
-            ColumnDefinition igridColumn2 = new ColumnDefinition();
-            ImageGrid.RowDefinitions.Add(igridRow1);
-            ImageGrid.RowDefinitions.Add(igridRow2);
-            ImageGrid.RowDefinitions.Add(igridRow3);
-            ImageGrid.RowDefinitions.Add(igridRow4);
-            ImageGrid.RowDefinitions.Add(igridRow5);
-            ImageGrid.RowDefinitions.Add(igridRow6);
-            ImageGrid.RowDefinitions.Add(igridRow7);
-            ImageGrid.RowDefinitions.Add(igridRow8);
-            ImageGrid.RowDefinitions.Add(igridRow9);
-            ImageGrid.RowDefinitions.Add(igridRow10);
-            ImageGrid.RowDefinitions.Add(igridRow11);
-            ImageGrid.RowDefinitions.Add(igridRow12);
-            ImageGrid.ColumnDefinitions.Add(igridColumn1);
-            ImageGrid.ColumnDefinitions.Add(igridColumn2);
+            for (int i = 0; i < 12; i++) ImageGrid.RowDefinitions.Add(new RowDefinition());
+            for (int i = 0; i < 2; i++) ImageGrid.ColumnDefinitions.Add(new ColumnDefinition());
             ImgSetup.Stretch = Stretch.Fill;
             ImageGrid.Children.Add(ImgSetup);
             Grid.SetColumn(ImgSetup, 0);
@@ -158,7 +120,6 @@ namespace Game.Display
             Grid.SetRow(rtb11, 9);
             Grid.SetRow(rtb12, 10);
             RefreshStats();
-
             // add battle image to grid
             BattleGrid.Children.Add(ImageGrid);
             Grid.SetColumn(ImageGrid, 0);

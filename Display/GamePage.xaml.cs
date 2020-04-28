@@ -226,7 +226,7 @@ namespace Game.Display
             try
             {
                 Image img = new Image();
-                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("obstacle" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("Assets/obstacle" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
                 WorldGrid.Children.Add(img);
                 obstacleImages.Add(img);
                 Grid.SetColumn(img, x);
@@ -245,7 +245,7 @@ namespace Game.Display
             try
             {
                 Image img = new Image();
-                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("portal" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("Assets/portal" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
                 WorldGrid.Children.Add(img);
                 portalImages.Add(img);
                 Grid.SetColumn(img, x);

@@ -192,33 +192,33 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\player.png" />
+    <Resource Include="Display\Assets\player.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\world.png" />
+    <Resource Include="Display\Assets\world.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\item0001.png" />
-    <Resource Include="Display\item0002.png" />
-    <Resource Include="Display\item0003.png" />
-    <Resource Include="Display\item0004.png" />
+    <Resource Include="Display\Assets\item0001.png" />
+    <Resource Include="Display\Assets\item0002.png" />
+    <Resource Include="Display\Assets\item0003.png" />
+    <Resource Include="Display\Assets\item0004.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\item0006.png" />
-    <Resource Include="Display\item0007.png" />
-    <Resource Include="Display\item0008.png" />
+    <Resource Include="Display\Assets\item0006.png" />
+    <Resource Include="Display\Assets\item0007.png" />
+    <Resource Include="Display\Assets\item0008.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\item0005.png" />
+    <Resource Include="Display\Assets\item0005.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\monster0001.png" />
+    <Resource Include="Display\Assets\monster0001.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\monster0002.png" />
+    <Resource Include="Display\Assets\monster0002.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\battle0001.png" />
+    <Resource Include="Display\Assets\battle0001.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -233,13 +233,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\obstacle0001.png" />
+    <Resource Include="Display\Assets\obstacle0001.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\obstacle0002.png" />
+    <Resource Include="Display\Assets\obstacle0002.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Display\portal0001.png" />
+    <Resource Include="Display\Assets\portal0001.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
