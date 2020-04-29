@@ -27,7 +27,7 @@ namespace Game.Engine.CharacterClasses
             Level++;
             parentSession.SendText("\nLevel Up! Level: " + Level);
             List<string> validInputs = new List<string>() { "1", "2", "3", "4" }; // only accept these inputs
-            parentSession.SendText("Choose a statistic to improve: 1 - Health(+20), 2 - Strength(+20), 3 - Precision(+5), 4 - Stamina(+20)");
+            parentSession.SendText("Choose a statistic to improve: +20 Health (press 1), +10 Strength (press 2), +5 Precision (press 3), +20 Stamina (press 4)");
             string key = parentSession.GetValidKeyResponse(validInputs).Item1;
             // don't make changes directly, ask GameSession to do it right
             if (key == "1") parentSession.UpdateStat(1, 20);

@@ -12,7 +12,7 @@ namespace Game.Engine.Items
         // simple spear
         public BasicSpear() : base("item0002") 
         {
-            prMod = 5;
+            PrMod = 5;
             GoldValue = 10;
             PublicName = "Basic Spear"; 
         }

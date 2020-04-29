@@ -14,7 +14,7 @@ namespace Game.Engine.Items.BasicArmor
         { 
             PublicName = "SteelArmor";
             GoldValue = 40;
-            arMod = 40;
+            ArMod = 40;
         }
 
     }

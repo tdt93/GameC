@@ -168,14 +168,14 @@ namespace Game.Engine.CharacterClasses
             Level++;
             parentSession.SendText("\nLevel Up! Level: " + Level);
             List<string> validInputs = new List<string>() { "1", "2", "3", "4", "5" }; // only accept these inputs
-            parentSession.SendText("Choose a statistic to improve: 1 - Health, 2 - Strength, 3 - Precision, 4 - Magic Power, 5 - Stamina");
+            parentSession.SendText("Choose a statistic to improve: +10 Health (press 1), +10 Strength (press 2), +5 Precision (press 3), +10 Magic Power (press 4), +10 Stamina (press 5)");
             string key = parentSession.GetValidKeyResponse(validInputs).Item1;
             // don't make changes directly, ask GameSession to do it right
             if (key == "1") parentSession.UpdateStat(1, 10);
-            else if (key == "2") parentSession.UpdateStat(2, 1);
-            else if (key == "3") parentSession.UpdateStat(4, 1);
-            else if (key == "4") parentSession.UpdateStat(5, 1);
-            else if (key == "5") parentSession.UpdateStat(6, 1);
+            else if (key == "2") parentSession.UpdateStat(2, 10);
+            else if (key == "3") parentSession.UpdateStat(4, 5);
+            else if (key == "4") parentSession.UpdateStat(5, 10);
+            else if (key == "5") parentSession.UpdateStat(6, 10);
         }
         public virtual void LearnNewSkill(List<Skill> learningSkills)
         {

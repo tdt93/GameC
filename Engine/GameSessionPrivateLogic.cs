@@ -190,6 +190,38 @@ namespace Game.Engine
                 }
             }
         }
+        public void ListAllItemsTips()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Image img = parentPage.GetImageFromGrid(i, j);
+                    if (img != null)
+                    {
+                        if (img.Name != "")
+                        {
+                            Item tmp = Index.ProduceSpecificItem(img.Name);
+                            string txt = tmp.PublicName + ": ";
+                            if (tmp.HpMod > 0) txt += "Health(+" + tmp.HpMod + ") ";
+                            if (tmp.HpMod < 0) txt += "Health(" + tmp.HpMod + ") ";
+                            if (tmp.StrMod > 0) txt += "Strength(+" + tmp.StrMod + ") ";
+                            if (tmp.StrMod < 0) txt += "Strength(" + tmp.StrMod + ") ";
+                            if (tmp.ArMod > 0) txt += "Armor(+" + tmp.ArMod + ") ";
+                            if (tmp.ArMod < 0) txt += "Armor(" + tmp.ArMod + ") ";
+                            if (tmp.PrMod > 0) txt += "Precision(+" + tmp.PrMod + ") ";
+                            if (tmp.PrMod < 0) txt += "Precision(" + tmp.PrMod + ") ";
+                            if (tmp.MgcMod > 0) txt += "Power(+" + tmp.MgcMod + ") ";
+                            if (tmp.MgcMod < 0) txt += "Power(" + tmp.MgcMod + ") ";
+                            if (tmp.StaMod > 0) txt += "Health(+" + tmp.StaMod + ") ";
+                            if (tmp.StaMod < 0) txt += "Health(" + tmp.StaMod + ") ";
+                            if (tmp.PublicTip != null) txt += "Bonus: " + tmp.PublicTip;
+                            SendText(txt);
+                        }
+                    }
+                }
+            }
+        }
         public void RefreshMonstersDisplay()
         {
             // refresh display of all monsters
@@ -247,6 +279,7 @@ namespace Game.Engine
                         // restore position from before the battle
                         parentPage.MovePlayer("reverse");
                     }
+                    else parentPage.IgnoreNextKey = false;
                 }
                 catch (IndexOutOfRangeException e)
                 {

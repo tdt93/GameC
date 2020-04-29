@@ -9,8 +9,15 @@ namespace Game.Engine.Items
     [Serializable]
     public abstract class Item : DisplayItem
     {
-        protected int hpMod, strMod, arMod, prMod, mgcMod, staMod; // statistic buffs
+        // statistic buffs
+        public int HpMod { get; protected set; }
+        public int StrMod { get; protected set; }
+        public int ArMod { get; protected set; }
+        public int PrMod { get; protected set; }
+        public int MgcMod { get; protected set; }
+        public int StaMod { get; protected set; }
         public string PublicName { get; protected set; } // the name to be displayed in game
+        public string PublicTip { get; protected set; } // short description of special bonuses
         public int GoldValue { get; protected set; } 
         public virtual bool IsAxe { get; protected set; } = false;
         public virtual bool IsSword { get; protected set; } = false;
@@ -19,18 +26,18 @@ namespace Game.Engine.Items
         public Item(string name)
         {
             Name = name;
-            hpMod = 0;
+            HpMod = 0;
         }
         public virtual void ApplyBuffs(Player currentPlayer, List<string> otherItems)
         {
             // by default, simply add item statistics to player statistics
             // can be overriden to include more complicated item mechanics (conditionals, randomness... )
-            currentPlayer.HealthBuff += hpMod;
-            currentPlayer.StrengthBuff += strMod;
-            currentPlayer.ArmorBuff += arMod;
-            currentPlayer.PrecisionBuff += prMod;
-            currentPlayer.MagicPowerBuff += mgcMod;
-            currentPlayer.StaminaBuff += staMod;
+            currentPlayer.HealthBuff += HpMod;
+            currentPlayer.StrengthBuff += StrMod;
+            currentPlayer.ArmorBuff += ArMod;
+            currentPlayer.PrecisionBuff += PrMod;
+            currentPlayer.MagicPowerBuff += MgcMod;
+            currentPlayer.StaminaBuff += StaMod;
         }
         public virtual StatPackage ModifyOffensive(StatPackage pack, List<string> otherItems)
         {

@@ -353,6 +353,22 @@ namespace Game.Display
                     }
                 }    
             }
+
+            if (e.Key == Key.I)
+            {
+                AddConsoleText("Currently you have the following items:");
+                currentSession.ListAllItemsTips();
+            }
+
+            if (e.Key == Key.U)
+            {
+                AddConsoleText("Currently you know the following skills:");
+                foreach(Skill sk in currentSession.currentPlayer.ListOfSkills)
+                {
+                    AddConsoleText(sk.PublicName);
+                }
+            }
+
         }
 
     }

@@ -22,7 +22,7 @@ namespace Game.Display
         protected Image monsterImage;
         protected Player player;
         protected Monster monster;
-        RichTextBox rtb1, rtb2, rtb3, rtb4, rtb5, rtb6, rtb7, rtb8, rtb9, rtb10, rtb11, rtb12;
+        List<RichTextBox> rtbs;
         public Image ImgSetup { get; set; }
         public BattleScene(GamePage page, Player player, Monster monster)
         {
@@ -61,31 +61,10 @@ namespace Game.Display
             Grid.SetRow(monsterImage, 1);
             Grid.SetRowSpan(monsterImage, 3);
             // still constructing battle image - statistics
-            rtb1 = new RichTextBox();
-            rtb2 = new RichTextBox();
-            rtb3 = new RichTextBox();
-            rtb4 = new RichTextBox();
-            rtb5 = new RichTextBox();
-            rtb6 = new RichTextBox();
-            rtb7 = new RichTextBox();
-            rtb8 = new RichTextBox();
-            rtb9 = new RichTextBox();
-            rtb10 = new RichTextBox();
-            rtb11 = new RichTextBox();
-            rtb12 = new RichTextBox();
-            List<RichTextBox> rtbs = new List<RichTextBox>();
-            rtbs.Add(rtb1);
-            rtbs.Add(rtb2);
-            rtbs.Add(rtb3);
-            rtbs.Add(rtb4);
-            rtbs.Add(rtb5);
-            rtbs.Add(rtb6);
-            rtbs.Add(rtb7);
-            rtbs.Add(rtb8);
-            rtbs.Add(rtb9);
-            rtbs.Add(rtb10);
-            rtbs.Add(rtb11);
-            rtbs.Add(rtb12);
+            rtbs = new List<RichTextBox>() { new RichTextBox(), new RichTextBox(), 
+                new RichTextBox(), new RichTextBox(), new RichTextBox(), new RichTextBox(), 
+                new RichTextBox(), new RichTextBox(), new RichTextBox(), new RichTextBox(), 
+                new RichTextBox(), new RichTextBox() };
             foreach(RichTextBox rtb in rtbs)
             {
                 rtb.Focusable = false;
@@ -95,30 +74,30 @@ namespace Game.Display
                 rtb.BorderThickness = new Thickness(0);
                 ImageGrid.Children.Add(rtb);
             }
-            Grid.SetColumn(rtb1, 0);
-            Grid.SetColumn(rtb2, 0);
-            Grid.SetColumn(rtb3, 0);
-            Grid.SetColumn(rtb4, 0);
-            Grid.SetColumn(rtb5, 0);
-            Grid.SetColumn(rtb6, 0);
-            Grid.SetColumn(rtb7, 1);
-            Grid.SetColumn(rtb8, 1);
-            Grid.SetColumn(rtb9, 1);
-            Grid.SetColumn(rtb10, 1);
-            Grid.SetColumn(rtb11, 1);
-            Grid.SetColumn(rtb12, 1);
-            Grid.SetRow(rtb1, 5);
-            Grid.SetRow(rtb2, 6);
-            Grid.SetRow(rtb3, 7);
-            Grid.SetRow(rtb4, 8);
-            Grid.SetRow(rtb5, 9);
-            Grid.SetRow(rtb6, 10);
-            Grid.SetRow(rtb7, 5);
-            Grid.SetRow(rtb8, 6);
-            Grid.SetRow(rtb9, 7);
-            Grid.SetRow(rtb10, 8);
-            Grid.SetRow(rtb11, 9);
-            Grid.SetRow(rtb12, 10);
+            Grid.SetColumn(rtbs[0], 0);
+            Grid.SetColumn(rtbs[1], 0);
+            Grid.SetColumn(rtbs[2], 0);
+            Grid.SetColumn(rtbs[3], 0);
+            Grid.SetColumn(rtbs[4], 0);
+            Grid.SetColumn(rtbs[5], 0);
+            Grid.SetColumn(rtbs[6], 1);
+            Grid.SetColumn(rtbs[7], 1);
+            Grid.SetColumn(rtbs[8], 1);
+            Grid.SetColumn(rtbs[9], 1);
+            Grid.SetColumn(rtbs[10], 1);
+            Grid.SetColumn(rtbs[11], 1);
+            Grid.SetRow(rtbs[0], 5);
+            Grid.SetRow(rtbs[1], 6);
+            Grid.SetRow(rtbs[2], 7);
+            Grid.SetRow(rtbs[3], 8);
+            Grid.SetRow(rtbs[4], 9);
+            Grid.SetRow(rtbs[5], 10);
+            Grid.SetRow(rtbs[6], 5);
+            Grid.SetRow(rtbs[7], 6);
+            Grid.SetRow(rtbs[8], 7);
+            Grid.SetRow(rtbs[9], 8);
+            Grid.SetRow(rtbs[10], 9);
+            Grid.SetRow(rtbs[11], 10);
             RefreshStats();
             // add battle image to grid
             BattleGrid.Children.Add(ImageGrid);
@@ -219,47 +198,47 @@ namespace Game.Display
         public void RefreshStats()
         {
             // refresh all statistics displayed
-            rtb1.Document.Blocks.Clear();
-            rtb1.AppendText("Health: " + player.Health);
-            rtb2.Document.Blocks.Clear();
-            rtb2.AppendText("Strength: " + player.Strength);
-            rtb3.Document.Blocks.Clear();
-            rtb3.AppendText("Armor: " + player.Armor);
-            rtb4.Document.Blocks.Clear();
-            rtb4.AppendText("Precision: " + player.Precision);
-            rtb5.Document.Blocks.Clear();
-            rtb5.AppendText("Magic Power: " + player.MagicPower);
-            rtb6.Document.Blocks.Clear();
-            rtb6.AppendText("Stamina: " + player.Stamina);
-            rtb7.Document.Blocks.Clear();
-            rtb7.AppendText("Health: " + monster.Health);
-            rtb8.Document.Blocks.Clear();
-            rtb8.AppendText("Strength: " + monster.Strength);
-            rtb9.Document.Blocks.Clear();
-            rtb9.AppendText("Armor: " + monster.Armor);
-            rtb10.Document.Blocks.Clear();
-            rtb10.AppendText("Precision: " + monster.Precision);
-            rtb11.Document.Blocks.Clear();
-            rtb11.AppendText("Magic Power: " + monster.MagicPower);
-            rtb12.Document.Blocks.Clear();
-            rtb12.AppendText("Stamina: " + monster.Stamina);
+            rtbs[0].Document.Blocks.Clear();
+            rtbs[0].AppendText("Health: " + player.Health);
+            rtbs[1].Document.Blocks.Clear();
+            rtbs[1].AppendText("Strength: " + player.Strength);
+            rtbs[2].Document.Blocks.Clear();
+            rtbs[2].AppendText("Armor: " + player.Armor);
+            rtbs[3].Document.Blocks.Clear();
+            rtbs[3].AppendText("Precision: " + player.Precision);
+            rtbs[4].Document.Blocks.Clear();
+            rtbs[4].AppendText("Magic Power: " + player.MagicPower);
+            rtbs[5].Document.Blocks.Clear();
+            rtbs[5].AppendText("Stamina: " + player.Stamina);
+            rtbs[6].Document.Blocks.Clear();
+            rtbs[6].AppendText("Health: " + monster.Health);
+            rtbs[7].Document.Blocks.Clear();
+            rtbs[7].AppendText("Strength: " + monster.Strength);
+            rtbs[8].Document.Blocks.Clear();
+            rtbs[8].AppendText("Armor: " + monster.Armor);
+            rtbs[9].Document.Blocks.Clear();
+            rtbs[9].AppendText("Precision: " + monster.Precision);
+            rtbs[10].Document.Blocks.Clear();
+            rtbs[10].AppendText("Magic Power: " + monster.MagicPower);
+            rtbs[11].Document.Blocks.Clear();
+            rtbs[11].AppendText("Stamina: " + monster.Stamina);
             AdjustStatDisplay();
         }
         private void AdjustStatDisplay()
         {
             // adjustments (don't ask me why this can't be done only once in xaml... )
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb1);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb2);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb3);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb4);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb5);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb6);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb7);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb8);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb9);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb10);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb11);
-            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtb12);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[0]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[1]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[2]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[3]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[4]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[5]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[6]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[7]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[8]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[9]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[10]);
+            System.Windows.Documents.EditingCommands.AlignCenter.Execute(null, rtbs[11]);
         }
     }
 }

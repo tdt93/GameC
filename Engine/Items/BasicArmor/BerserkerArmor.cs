@@ -9,14 +9,15 @@ namespace Game.Engine.Items.BasicArmor
     [Serializable]
     class BerserkerArmor : Item
     {
-        // special passive: each time you lose health, receive a bonus to physical damage you deal
+        // special passive: receive physical damage bonus after losing health
 
         private int berserkerBonus;
         public BerserkerArmor() : base("item0007")
         {
             PublicName = "BerserkerArmor";
+            PublicTip = "when you lose X health, receive a X/4 percentage bonus to physical damage you deal in this battle";
             GoldValue = 40;
-            arMod = 20;
+            ArMod = 20;
         }
         public override StatPackage ModifyOffensive(StatPackage pack, List<string> otherItems)
         {

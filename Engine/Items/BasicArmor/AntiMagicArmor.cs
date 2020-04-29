@@ -9,12 +9,13 @@ namespace Game.Engine.Items.BasicArmor
     [Serializable]
     class AntiMagicArmor : Item
     {
-        // extra 30% reduction of magic damage
+        // extra reduction of magic damage
         public AntiMagicArmor() : base("item0006")
         {
             PublicName = "AntiMagicArmor";
+            PublicTip = "extra 30% reduction of magic damage";
             GoldValue = 40;
-            arMod = 20;
+            ArMod = 20;
         }
         public override StatPackage ModifyDefensive(StatPackage pack, List<string> otherItems)
         {

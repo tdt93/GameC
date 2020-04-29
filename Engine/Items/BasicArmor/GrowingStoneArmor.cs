@@ -13,12 +13,13 @@ namespace Game.Engine.Items.BasicArmor
         public GrowingStoneArmor() : base("item0008") 
         { 
             PublicName = "GrowingStoneArmor";
+            PublicTip = "each 4 points of magic power are converted into 1 point of bonus armor";
             GoldValue = 40;
-            arMod = 20;
+            ArMod = 20;
         }
         public override void ApplyBuffs(Engine.CharacterClasses.Player currentPlayer, List<string> otherItems)
         {
-            currentPlayer.ArmorBuff += arMod + currentPlayer.MagicPower / 4;
+            currentPlayer.ArmorBuff += ArMod + currentPlayer.MagicPower / 4;
         }
     }
 }

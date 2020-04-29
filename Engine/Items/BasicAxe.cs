@@ -12,7 +12,7 @@ namespace Game.Engine.Items
         // simple axe
         public BasicAxe() : base("item0003")
         {
-            strMod = 10;
+            StrMod = 10;
             GoldValue = 10;
             PublicName = "Basic Axe"; 
         }
