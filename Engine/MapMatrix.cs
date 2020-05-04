@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Game.Engine.Monsters.MonsterFactories;
 using Game.Engine.Monsters;
 using System.Windows;
-using System.Security.Cryptography.X509Certificates;
+using Game.Engine.Interactions;
 
 namespace Game.Engine
 {
@@ -13,8 +13,8 @@ namespace Game.Engine
     // 1 - normal terrain (walkable, but nothing happens)
     // 1000 - battle with a monster
     // 2000 to 2999 - portal to another map
+    // 3000 and above - a custom interaction
     // -1 to -999 - unpassable terrain (just like 0 but with nicer display)
-    // anything else - some event will occur
     
     [Serializable]
     class MapMatrix
@@ -27,15 +27,13 @@ namespace Game.Engine
         private Dictionary<int, MonsterFactory> monDict;
         private Random rng;
         private GameSession parentSession;
-        public Dictionary<int, Monster> Stored { get; set; }
+        public Dictionary<int, Monster> Monsters { get; set; }
+        public Dictionary<int, Interaction> Interactions { get; private set; }
         public int[,] Matrix { get; set; }
         public int Width { get; set; } = 25;
         public int Height { get; set; } = 20;
 
-        // will be removed in the future
-        public Interactions.ItemSellInteraction Shop { get; private set; }
-
-        public MapMatrix(GameSession parent, List<int> portals, int randomCode)
+        public MapMatrix(GameSession parent, List<int> portals, List<Interaction> inters, int randomCode)
         {
             parentSession = parent;
             Matrix = new int[Height, Width];
@@ -51,27 +49,16 @@ namespace Game.Engine
             // decorate map with stuff
             DecorateWithObstacles();
             DecorateWithPortals(portals);
+            DecorateWithInteractions(inters);
             DecorateWithMonsters();
             // trim walls
             for (int y = 0; y < Height; y++) Matrix[y, 0] = 0;
             for (int x = 0; x < Width; x++) Matrix[0, x] = 0;
             for (int y = 0; y < Height; y++) Matrix[y, Width - 1] = 0;
             for (int x = 0; x < Width; x++) Matrix[Height - 1, x] = 0;
-            // add one shop per map (will be removed in the future when interactions get automatized)
-            Shop = new Interactions.ItemSellInteraction(parentSession);
-            while(true)
-            {
-                int h = 2 + rng.Next(Height - 4);
-                int w = 2 + rng.Next(Width - 4);
-                if (ValidPlace(w, h)) 
-                {
-                    Matrix[h, w] = 3001;
-                    break;
-                }
-            }
             // initialize 
             InitializeFactoryList();
-            Stored = new Dictionary<int, Monster>();
+            Monsters = new Dictionary<int, Monster>();
         }
 
         private void InitializeFactoryList()
@@ -92,7 +79,7 @@ namespace Game.Engine
         // produce or hint monsters
         public Monster CreateMonster(int x, int y, int playerLevel)
         {
-            if (Stored.ContainsKey(y * Width + x) && Stored[y * Width + x] != null) return Stored[y * Width + x];
+            if (Monsters.ContainsKey(y * Width + x) && Monsters[y * Width + x] != null) return Monsters[y * Width + x];
             if (monDict.ContainsKey(y * Width + x) && monDict[y * Width + x] != null)
             {
                 return monDict[y * Width + x].Create(playerLevel);
@@ -191,6 +178,26 @@ namespace Game.Engine
                     if (ValidPlace(x, y))
                     {
                         Matrix[y, x] = 2000 + portal;
+                        break;
+                    }
+                }
+            }
+        }
+        private void DecorateWithInteractions(List<Interaction> inters)
+        {
+            Interactions = new Dictionary<int, Interaction>();
+            Random rng = new Random();
+            foreach (Interaction inter in inters)
+            {
+                while (true)
+                {
+                    int x = rng.Next(2, Width - 2);
+                    int y = rng.Next(2, Height - 2);
+                    if (ValidPlace(x, y) && Matrix[y, x] == 1) 
+                    {
+                        if (Interactions.ContainsKey(Width * y + x)) continue;
+                        Interactions.Add(Width * y + x, inter);
+                        Matrix[y, x] = 3000 + Int32.Parse(inter.Name.Replace("interaction", ""));
                         break;
                     }
                 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.MemoryMappedFiles;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Game.Engine.Interactions;
+using Game.Engine.Skills;
 
 namespace Game.Engine
 {
@@ -19,6 +17,10 @@ namespace Game.Engine
         private int[] visited;
         private int lastNumber;
         private int currentNumber;
+        // interactions
+        private int shops = 20; // number of shops in the game world
+        private int interactions = 25; // number of all interactions (including shops) in the game world (can be slightly bigger due to quest constraints)
+        private List<Interaction> interactionList;
         // maps
         private MapMatrix[] matrix;
 
@@ -43,11 +45,27 @@ namespace Game.Engine
                 adjacencyMatrix[a, b] = 1;
                 adjacencyMatrix[b, a] = 1;
             }
+            // generate interactions
+            GenerateInteractions();
             // create maps
             matrix = new MapMatrix[maps];
+            int totalIntNumber = interactionList.Count;
             for (int i = 0; i < maps; i++)
             {
-                matrix[i] = new MapMatrix(parentSession, MakePortalsList(i), rng.Next(1000 * maps));
+                List<Interaction> tmp;
+                if (i == maps - 1)  tmp = interactionList;
+                else
+                {
+                    tmp = new List<Interaction>();
+                    for (int u = 0; u < (totalIntNumber / maps + 1); u++)
+                    {
+                        if (interactionList.Count == 0) break;
+                        int index = rng.Next(interactionList.Count);
+                        tmp.Add(interactionList[index]);
+                        interactionList.RemoveAt(index);
+                    }
+                }
+                matrix[i] = new MapMatrix(parentSession, MakePortalsList(i), tmp, rng.Next(1000 * maps));
             }
         }
 
@@ -57,13 +75,11 @@ namespace Game.Engine
             currentNumber = codeNumber;
             return matrix[codeNumber];
         }
-
         public int GetPreviousMatrixCode()
         {
             // for display when portal hopping
             return lastNumber;
         }
-
         private bool CheckConnectivity()
         {
             // check if the adjacencyMatrix represents a fully connected graph
@@ -75,7 +91,6 @@ namespace Game.Engine
             }
             return true;
         }
-
         private void SearchAndMark(int nodeNumber)
         {
             // recursive function
@@ -87,7 +102,6 @@ namespace Game.Engine
                 SearchAndMark(i);
             }
         }
-
         private List<int> MakePortalsList(int node)
         {
             // utility method for converting from matrix to list of portals
@@ -97,6 +111,12 @@ namespace Game.Engine
                 if (adjacencyMatrix[i, node] == 1) ans.Add(i);
             }
             return ans;
+        }
+        private void GenerateInteractions()
+        {
+            interactionList = new List<Interaction>();
+            for (int i = 0; i < shops; i++) interactionList.Add(new ShopInteraction(parentSession));
+            for (int i = shops; i < interactions; i++) interactionList.AddRange(Index.DrawInteractions(parentSession));
         }
     }
 }

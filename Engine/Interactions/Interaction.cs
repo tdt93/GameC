@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace Game.Engine.Interactions
 {
     [Serializable]
-    abstract class Interaction : DisplayItem
+    public abstract class Interaction : DisplayItem
     {
         protected GameSession parentSession;
+        public bool Enterable { get; protected set; } = true; // display: can you enter this place?
         public Interaction(GameSession ses)
         {
             parentSession = ses;

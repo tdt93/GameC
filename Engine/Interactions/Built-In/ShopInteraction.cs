@@ -6,11 +6,12 @@ namespace Game.Engine.Interactions
 {
     // a special interaction used for buying and selling items
     // if you want a clear example of how to write your own interesting interaction, this is probably NOT the right place 
+    // see Gymir and Hymir files instead
     [Serializable]
-    class ItemSellInteraction : ConsoleInteraction
+    class ShopInteraction : ConsoleInteraction
     {
         private Item it1, it2, it3;
-        public ItemSellInteraction(GameSession ses) : base(ses) 
+        public ShopInteraction(GameSession parentSession) : base(parentSession) 
         {
             it1 = Index.RandomClassItem(parentSession.currentPlayer);
             it2 = Index.RandomClassItem(parentSession.currentPlayer);
@@ -56,7 +57,7 @@ namespace Game.Engine.Interactions
         {
             if (parentSession.currentPlayer.Gold >= it.GoldValue + 20)
             {
-                parentSession.AddThisItem(it3);
+                parentSession.AddThisItem(it);
                 parentSession.UpdateStat(8, -1 * it.GoldValue - 20);
             }
             else parentSession.SendText("Sorry, you don't have enough gold to buy this!");

@@ -170,7 +170,32 @@ namespace Game.Engine
                 Wait(100);
             }
             return CurrentSelection;
-        }       
+        }
+        public int ListBoxInteractionChoice(List<string> choices)
+        {
+            // for ListBoxInteractions
+            if (choices.Count == 0) return 0;
+            ListBoxInteractionDisplay inter = new ListBoxInteractionDisplay(parentPage);
+            inter.SetChoices(choices);
+            while (inter.ChosenNumber < 0)
+            {
+                Wait(100);
+            }
+            inter.Finish();
+            return inter.ChosenNumber;
+        }
+
+        // for ImageInteractions
+        public ImageInteractionScene SetTmpImage(Image img)
+        {
+            ImageInteractionScene scene = new ImageInteractionScene(parentPage, img);
+            scene.SetupDisplay();
+            return scene;
+        }
+        public void RemoveTmpImage(ImageInteractionScene scene)
+        {
+            scene.EndDisplay();
+        }
         public void ListAllItemsCost()
         {
             // for selling items
@@ -253,13 +278,8 @@ namespace Game.Engine
              * If you want smooth movement for some specific interaction, you need to overwrite IgnoreNextKey inside the relevant if-clause
              */
             if (code > 1) parentPage.IgnoreNextKey = true;
-            // this if will be replaced in the future
-            if (code == 3001)
-            {
-                mapMatrix.Shop.Run();
-            }
             //
-            else if (code == 1000)
+            if (code == 1000)
             {
                 try
                 {
@@ -273,9 +293,9 @@ namespace Game.Engine
                         {
                             parentPage.UpdateMonster(mapMatrix.Width * PlayerPosTop + PlayerPosLeft, mapMatrix.HintMonsterImage(playerPosLeft, playerPosTop), mapMatrix.Width);
                             UpdateStat(7, monster.XPValue);
-                            mapMatrix.Stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = null; // this monster was defeated
+                            mapMatrix.Monsters[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = null; // this monster was defeated
                         }
-                        else mapMatrix.Stored[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = monster; // remember this monster until the next time
+                        else mapMatrix.Monsters[mapMatrix.Width * PlayerPosTop + PlayerPosLeft] = monster; // remember this monster until the next time
                         // restore position from before the battle
                         parentPage.MovePlayer("reverse");
                     }
@@ -291,6 +311,11 @@ namespace Game.Engine
             {
                 mapMatrix = metaMapMatrix.GetCurrentMatrix(code - 2000);
                 InitializeMapDisplay(metaMapMatrix.GetPreviousMatrixCode() + 2000);
+            }
+            else if (code > 3000)
+            {
+                mapMatrix.Interactions[mapMatrix.Width * PlayerPosTop + PlayerPosLeft].Run();
+                if (mapMatrix.Interactions[mapMatrix.Width * PlayerPosTop + PlayerPosLeft].Enterable == false) parentPage.MovePlayer("reverse");
             }
         }
 

@@ -6,21 +6,19 @@ using Game.Engine.Interactions;
 
 namespace Game.Display
 {
-    // utility class - prepare display details for Interaction objects
-    class ImageInteractionScene
+    // utility class - prepare display details for ImageInteraction objects
+    public class ImageInteractionScene
     {
         protected GamePage parentPage;
-        protected ImageInteraction interaction;
         protected Image imgSetup;
-        public ImageInteractionScene(ImageInteraction inter, GamePage parent)
+        public ImageInteractionScene(GamePage parent, Image img)
         {
-            interaction = inter;
+            imgSetup = img;
             parentPage = parent;
         }
         public virtual void SetupDisplay()
         { 
             // initialize display elements
-            imgSetup = interaction.GetImage();
             if(imgSetup != null)
             {
                 imgSetup.Stretch = Stretch.Fill;

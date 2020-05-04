@@ -204,6 +204,7 @@ namespace Game.Display
             {
                 monsterImages.Add(key, monster);
                 WorldGrid.Children.Add(monsterImages[key]);
+                monsterImages[key].Stretch = Stretch.Fill;
                 Grid.SetRow(monsterImages[key], key / modulo);
                 Grid.SetColumn(monsterImages[key], key % modulo);
             }
@@ -215,6 +216,7 @@ namespace Game.Display
             {
                 monsterImages[key] = monster;
                 WorldGrid.Children.Add(monsterImages[key]);
+                monsterImages[key].Stretch = Stretch.Fill;
                 Grid.SetRow(monsterImages[key], key / modulo);
                 Grid.SetColumn(monsterImages[key], key % modulo);
             }
@@ -227,6 +229,7 @@ namespace Game.Display
             {
                 Image img = new Image();
                 img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("Assets/obstacle" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                img.Stretch = Stretch.Fill;
                 WorldGrid.Children.Add(img);
                 obstacleImages.Add(img);
                 Grid.SetColumn(img, x);
@@ -246,6 +249,7 @@ namespace Game.Display
             {
                 Image img = new Image();
                 img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("Assets/portal" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                img.Stretch = Stretch.Fill;
                 WorldGrid.Children.Add(img);
                 portalImages.Add(img);
                 Grid.SetColumn(img, x);
@@ -258,7 +262,6 @@ namespace Game.Display
             }
 
         }
-
         public void AddInteraction(int x, int y, int number)
         {
             number = number - 3000;
@@ -266,6 +269,7 @@ namespace Game.Display
             {
                 Image img = new Image();
                 img.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(("Assets/interaction" + (number.ToString()).PadLeft(4, '0') + ".png"), UriKind.Relative));
+                img.Stretch = Stretch.Fill;
                 WorldGrid.Children.Add(img);
                 interactionImages.Add(img);
                 Grid.SetColumn(img, x);
@@ -276,7 +280,6 @@ namespace Game.Display
                 AddConsoleText(e.Message);
                 AddConsoleText("Image not found: interaction" + (number.ToString()).PadLeft(4, '0') + ".png");
             }
-
         }
 
         // when changing map, clear map items

@@ -12,12 +12,14 @@ namespace Game.Engine
     {
         protected BattleScene battleScene;
         protected int hpCopy, strCopy, armCopy, prCopy, mgCopy, staCopy; // after the battle, all statistics of the player are restored
+        protected bool rewards;
         public Monster Monster { get; set; }
         public bool battleResult { get; private set; } = false; // has the player won?
-        public Battle(GameSession ses, BattleScene scene, Monster monster) : base(ses)
+        public Battle(GameSession ses, BattleScene scene, Monster monster, bool rewards = true) : base(ses)
         {
             Monster = monster;
             Name = "battle0001";
+            this.rewards = rewards;
             battleScene = scene;
             battleScene.ImgSetup = GetImage();
         }
@@ -68,7 +70,7 @@ namespace Game.Engine
             parentSession.Wait(300);
             battleScene.EndDisplay();
             parentSession.SendText("You won! XP gained: " + Monster.XPValue);
-            VictoryReward();
+            if(rewards) VictoryReward();
             //parentSession.UpdateStat(7, Monster.XPValue); // for smoother display, this one was moved to GameSession.cs
         }
         protected void CopyPlayerState()

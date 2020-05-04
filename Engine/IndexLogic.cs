@@ -5,6 +5,7 @@ using Game.Engine.Items;
 using Game.Engine.CharacterClasses;
 using Game.Engine.Monsters;
 using Game.Engine.Monsters.MonsterFactories;
+using Game.Engine.Interactions;
 
 namespace Game.Engine
 {
@@ -73,6 +74,12 @@ namespace Game.Engine
         public static MonsterFactory RandomMonsterFactory()
         {
             return monsterFactories[RNG(0, monsterFactories.Count)].Clone();
+        }
+
+        // produce an interaction or a group of interactions
+        public static List<Interaction> DrawInteractions(GameSession parentSession)
+        {
+            return interactionFactories[RNG(0, interactionFactories.Count)].CreateInteractionsGroup(parentSession);
         }
 
     }

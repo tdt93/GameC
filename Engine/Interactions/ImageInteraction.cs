@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Game.Engine.Interactions
 {
@@ -12,12 +14,18 @@ namespace Game.Engine.Interactions
     [Serializable]
     abstract class ImageInteraction : Interaction
     {
-        // initialization and internal stuff
+        // image for display
+        // make it follow the name convention "interactionXXXXdisplay.png"
+        protected string displayedImageName = "";
         public ImageInteraction(GameSession ses) : base(ses) { }
         public override void Run()
         {
             parentSession.StopMoving();
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri(("Assets/" + displayedImageName + ".png"), UriKind.Relative));
+            Display.ImageInteractionScene scene = parentSession.SetTmpImage(img);
             RunContent();
+            parentSession.RemoveTmpImage(scene);
             parentSession.StartMoving();
         }
 

@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using Game.Engine.Items;
 using Game.Engine.Skills;
+using Game.Engine.Monsters;
 
 namespace Game.Engine
 {
@@ -160,6 +161,42 @@ namespace Game.Engine
             // player learns a particular skill
             // if you use this method, you should know exactly what skill you want the player to learn
             currentPlayer.Learn(sk);
+        }
+
+        /***************************        FIGHTS      ***************************/
+        public void FightRandomMonster()
+        {
+            // player will fight against a random monster
+            // xp can be gained here, but gold/items cannot (you can do this separately inside your interaction)
+            try
+            {
+                Monster monster = Index.RandomMonsterFactory().Clone().Create(currentPlayer.Level);
+                if (monster != null)
+                {
+                    Display.BattleScene newBattleScene = new Display.BattleScene(parentPage, currentPlayer, monster);
+                    Battle newBattle = new Battle(this, newBattleScene, monster, false);
+                    newBattle.Run();
+                    if (newBattle.battleResult) UpdateStat(7, monster.XPValue);
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                parentPage.AddConsoleText("An attempt was made to create a monster but something went wrong. Did you remember to update the Index class?");
+                parentPage.AddConsoleText(e.Message);
+            }
+        }
+
+        public void FightThisMonster(Monster monster)
+        {
+            // player will fight against a particular monster
+            // xp can be gained here, but gold/items cannot (you can do this separately inside your interaction)
+            if (monster != null)
+            {
+                Display.BattleScene newBattleScene = new Display.BattleScene(parentPage, currentPlayer, monster);
+                Battle newBattle = new Battle(this, newBattleScene, monster, false);
+                newBattle.Run();
+                if (newBattle.battleResult) UpdateStat(7, monster.XPValue);
+            }
         }
 
 

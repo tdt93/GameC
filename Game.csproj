@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Display\GamePageMouseMove.cs" />
     <Compile Include="Display\ImageInteractionScene.cs" />
+    <Compile Include="Display\ListBoxInteractionDisplay.cs" />
     <Compile Include="Display\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
@@ -115,10 +116,21 @@
     <Compile Include="Engine\GameSessionPublicLogic.cs" />
     <Compile Include="Engine\DisplayItem.cs" />
     <Compile Include="Engine\IndexLogic.cs" />
+    <Compile Include="Engine\Interactions\Built-In\GymirEncounter.cs" />
+    <Compile Include="Engine\Interactions\Built-In\HymirEncounter.cs" />
+    <Compile Include="Engine\Interactions\Built-In\HymirFriendlyStrategy.cs" />
+    <Compile Include="Engine\Interactions\Built-In\HymirHostileStrategy.cs" />
+    <Compile Include="Engine\Interactions\Built-In\HymirNeutralStrategy.cs" />
+    <Compile Include="Engine\Interactions\Built-In\IHymirStrategy.cs" />
+    <Compile Include="Engine\Interactions\Built-In\SkillForgetInteraction.cs" />
     <Compile Include="Engine\Interactions\ConsoleInteraction.cs" />
     <Compile Include="Engine\Interactions\ImageInteraction.cs" />
     <Compile Include="Engine\Interactions\Interaction.cs" />
-    <Compile Include="Engine\Interactions\ItemSellInteraction.cs" />
+    <Compile Include="Engine\Interactions\InteractionFactories\GymirHymirFactory.cs" />
+    <Compile Include="Engine\Interactions\InteractionFactories\InteractionFactory.cs" />
+    <Compile Include="Engine\Interactions\Built-In\ShopInteraction.cs" />
+    <Compile Include="Engine\Interactions\InteractionFactories\SkillForgetFactory.cs" />
+    <Compile Include="Engine\Interactions\ListBoxInteraction.cs" />
     <Compile Include="Engine\Items\Axe.cs" />
     <Compile Include="Engine\Items\BasicArmor\AntiMagicArmor.cs" />
     <Compile Include="Engine\Items\BasicArmor\BerserkerArmor.cs" />
@@ -243,6 +255,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Display\Assets\interaction0001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\interaction0002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\interaction0003.png" />
+    <Resource Include="Display\Assets\interaction0004.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
