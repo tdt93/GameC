@@ -7,6 +7,9 @@ using Game.Engine.Items.ItemFactories;
 using Game.Engine.Items.BasicArmor;
 using Game.Engine.Interactions;
 using Game.Engine.Interactions.InteractionFactories;
+using Game.Engine.Items.BasicRing;
+using Game.Engine.Items.Amulet;
+using Game.Engine.Items.OsirisArmor;
 
 namespace Game.Engine
 {
@@ -15,12 +18,21 @@ namespace Game.Engine
     {
         private static List<SkillFactory> magicSkillFactories = new List<SkillFactory>()
         {
-            new BasicSpellFactory()
+            new BasicSpellFactory(),
+            new WaterSpellFactory(), 
+            new OsirisMovesFactory(),
+            new AdvancedSpellsFactory1(),
+            new AdvancedSpellsFactory2(),
+            new ArmorDerivedSpellFactory()
         };
 
         private static List<SkillFactory> weaponSkillFactories = new List<SkillFactory>()
         {
-            new BasicWeaponMoveFactory()
+            new BasicWeaponMoveFactory(),
+            new AxeCutFactory(),
+            new SwordMoveFactory(),
+            new SpearMoveFactory(),
+            new ArmorDerivedSpellFactory()
         };
 
         private static List<Item> items = new List<Item>()
@@ -32,17 +44,52 @@ namespace Game.Engine
             new SteelArmor(),
             new AntiMagicArmor(),
             new BerserkerArmor(),
-            new GrowingStoneArmor()
+            new GrowingStoneArmor(),
+            new CrystalSword(),
+            new InfinitySword(),
+            new MoonlightSword(),
+            new ArmorRing(),
+            new HealthRing(),
+            new MagicRing(),
+            new LuckyCharmAmulet(),
+            new MageDuelistAmulet(),
+            new SupportingAmulet(),
+            new OsirisEye(),
+            new OsirisSabre(),
+            new OsirisStaff()
         };
 
         private static List<ItemFactory> itemFactories = new List<ItemFactory>()
         {
-            new BasicArmorFactory()
+            new BasicArmorFactory(),
+            new SwordFactory(),
+            new BasicRingFactory(),
+            new AmuletFactory(),
+            new OsirisFactory()
         };
 
         private static List<MonsterFactory> monsterFactories = new List<MonsterFactory>()
         {
-            new Monsters.MonsterFactories.RatFactory()
+            // x3
+            new Monsters.MonsterFactories.RatFactory(),
+            new Monsters.MonsterFactories.RatFactory(),
+            new Monsters.MonsterFactories.RatFactory(),
+            new Monsters.MonsterFactories.BatFactory(),
+            new Monsters.MonsterFactories.BatFactory(),
+            new Monsters.MonsterFactories.BatFactory(),
+            // x2
+            new Monsters.MonsterFactories.ButterflyFactory(),
+            new Monsters.MonsterFactories.ButterflyFactory(),
+            // x1
+            new Monsters.MonsterFactories.EgyptMonstersFactory(),
+            new Monsters.MonsterFactories.GolemFactory(),
+            new Monsters.MonsterFactories.MimicFactory(),
+            new Monsters.MonsterFactories.PhoenixFactory(),
+            new Monsters.MonsterFactories.UnicornFactory(),
+            new Monsters.MonsterFactories.GermFactory(),
+            new Monsters.MonsterFactories.IceDragonFactory(),
+            new Monsters.MonsterFactories.HydraFactory(),
+            new Monsters.MonsterFactories.UnseenHorrorFactory()
         };
 
         private static List<InteractionFactory> interactionFactories = new List<InteractionFactory>()

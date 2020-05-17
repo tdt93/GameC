@@ -76,7 +76,10 @@ namespace Game.Engine
                 Image img = parentPage.GetImageFromGrid(i, 0);
                 if (img != null)
                 {
-                    if (img.Name != "") ans.Add(img.Name);
+                    if (img.Name != "")
+                    {
+                        ans.Add(img.Name);
+                    }
                 }
             }
             return ans;

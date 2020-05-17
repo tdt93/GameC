@@ -131,6 +131,9 @@
     <Compile Include="Engine\Interactions\Built-In\ShopInteraction.cs" />
     <Compile Include="Engine\Interactions\InteractionFactories\SkillForgetFactory.cs" />
     <Compile Include="Engine\Interactions\ListBoxInteraction.cs" />
+    <Compile Include="Engine\Items\Amulets\LuckyCharmAmulet.cs" />
+    <Compile Include="Engine\Items\Amulets\MageDuelistAmulet.cs" />
+    <Compile Include="Engine\Items\Amulets\SupportingAmulet.cs" />
     <Compile Include="Engine\Items\Axe.cs" />
     <Compile Include="Engine\Items\BasicArmor\AntiMagicArmor.cs" />
     <Compile Include="Engine\Items\BasicArmor\BerserkerArmor.cs" />
@@ -142,20 +145,86 @@
     <Compile Include="Engine\Items\Item.cs" />
     <Compile Include="Engine\Index.cs" />
     <Compile Include="Engine\Items\BasicAxe.cs" />
+    <Compile Include="Engine\Items\ItemFactories\AmuletFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\BasicArmorFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\BasicRingFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\ItemFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\OsirisFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\SwordFactory.cs" />
+    <Compile Include="Engine\Items\Rings\ArmorRing.cs" />
+    <Compile Include="Engine\Items\Rings\HealthRing.cs" />
+    <Compile Include="Engine\Items\Rings\MagicRing.cs" />
+    <Compile Include="Engine\Items\SetOsiris\OsirisEye.cs" />
+    <Compile Include="Engine\Items\SetOsiris\OsirisSabre.cs" />
+    <Compile Include="Engine\Items\SetOsiris\OsirisStaff.cs" />
     <Compile Include="Engine\Items\Spear.cs" />
     <Compile Include="Engine\Items\Staff.cs" />
     <Compile Include="Engine\Items\Sword.cs" />
+    <Compile Include="Engine\Items\Swords\CrystalSword.cs" />
+    <Compile Include="Engine\Items\Swords\InfinitySword.cs" />
+    <Compile Include="Engine\Items\Swords\MoonlightSword.cs" />
     <Compile Include="Engine\MapMatrix.cs" />
     <Compile Include="Engine\MetaMapMatrix.cs" />
+    <Compile Include="Engine\Monsters\Butterflies\Butterfly.cs" />
+    <Compile Include="Engine\Monsters\Butterflies\ButterflyEvolved.cs" />
+    <Compile Include="Engine\Monsters\Dragons\IceDragon.cs" />
+    <Compile Include="Engine\Monsters\Dragons\IceEgg.cs" />
+    <Compile Include="Engine\Monsters\Egyptian\AnubisGuard.cs" />
+    <Compile Include="Engine\Monsters\Egyptian\ArabicSkeleton.cs" />
+    <Compile Include="Engine\Monsters\Hydras\Hydra1.cs" />
+    <Compile Include="Engine\Monsters\Hydras\Hydra2.cs" />
+    <Compile Include="Engine\Monsters\Hydras\Hydra3.cs" />
+    <Compile Include="Engine\Monsters\Hydras\Hydra4.cs" />
+    <Compile Include="Engine\Monsters\Misc\GiantGerm.cs" />
+    <Compile Include="Engine\Monsters\Misc\Golem.cs" />
+    <Compile Include="Engine\Monsters\Misc\Mimic.cs" />
+    <Compile Include="Engine\Monsters\Misc\Phoenix.cs" />
+    <Compile Include="Engine\Monsters\Misc\Unicorn.cs" />
+    <Compile Include="Engine\Monsters\Misc\UnseenHorror.cs" />
     <Compile Include="Engine\Monsters\Monster.cs" />
     <Compile Include="Engine\CharacterClasses\Player.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\BatFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\ButterflyFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\EgyptMontersFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\GermFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\GolemFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\HydraFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\IceDragonFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\MimicFactory.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\MonsterFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\PhoenixFactory.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\RatFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\UnicornFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\UnseenHorrorFactory.cs" />
     <Compile Include="Engine\Monsters\Rat.cs" />
     <Compile Include="Engine\Monsters\RatEvolved.cs" />
+    <Compile Include="Engine\Monsters\Vampires\Bat.cs" />
+    <Compile Include="Engine\Monsters\Vampires\VampireKnight.cs" />
     <Compile Include="Engine\SaveData.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\ArmorDestruction.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\ArmorDestructionDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\ConstrainPerson.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\ConstrainPersonDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\ForcedLightning.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\ForcedLightningDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\Healing.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\HealingDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\LifeDrain.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\LifeDrainDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\StrengthTheftDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\StrengthTheft.cs" />
+    <Compile Include="Engine\Skills\ArmorDerivedSpells\Bloodlust.cs" />
+    <Compile Include="Engine\Skills\ArmorDerivedSpells\BloodlustDecorator.cs" />
+    <Compile Include="Engine\Skills\ArmorDerivedSpells\Heal.cs" />
+    <Compile Include="Engine\Skills\ArmorDerivedSpells\HealDecorator.cs" />
+    <Compile Include="Engine\Skills\ArmorDerivedSpells\Rage.cs" />
+    <Compile Include="Engine\Skills\ArmorDerivedSpells\RageDecorator.cs" />
+    <Compile Include="Engine\Skills\AxeCuts\DoubleAxeCut.cs" />
+    <Compile Include="Engine\Skills\AxeCuts\DoubleAxeCutDecorator.cs" />
+    <Compile Include="Engine\Skills\AxeCuts\JumpAxeCut.cs" />
+    <Compile Include="Engine\Skills\AxeCuts\JumpAxeCutDecorator.cs" />
+    <Compile Include="Engine\Skills\AxeCuts\TornadoAxeCut.cs" />
+    <Compile Include="Engine\Skills\AxeCuts\TornadoAxeCutDecorator.cs" />
     <Compile Include="Engine\Skills\BasicSpells\FireArrow.cs" />
     <Compile Include="Engine\Skills\BasicSpells\FireArrowDecorator.cs" />
     <Compile Include="Engine\Skills\BasicSpells\LightFlash.cs" />
@@ -163,13 +232,45 @@
     <Compile Include="Engine\Skills\BasicWeaponMoves\AxeCut.cs" />
     <Compile Include="Engine\Skills\BasicWeaponMoves\SpearStab.cs" />
     <Compile Include="Engine\Skills\BasicWeaponMoves\SwordSlash.cs" />
+    <Compile Include="Engine\Skills\OsirisSpells\MummySpell.cs" />
+    <Compile Include="Engine\Skills\OsirisSpells\MummySpellDecorator.cs" />
+    <Compile Include="Engine\Skills\OsirisSpells\NileSplash.cs" />
+    <Compile Include="Engine\Skills\OsirisSpells\NileSplashDecorator.cs" />
+    <Compile Include="Engine\Skills\OsirisSpells\OsirisCurse.cs" />
+    <Compile Include="Engine\Skills\OsirisSpells\OsirisCurseDecorator.cs" />
     <Compile Include="Engine\Skills\Skill.cs" />
     <Compile Include="Engine\Skills\SkillDecorator.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\AdvancedSpellsFactory1.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\AdvancedSpellsFactory2.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\SpearMoveFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\AxeCutFactory.cs" />
     <Compile Include="Engine\Skills\SkillFactories\BasicSpellFactory.cs" />
     <Compile Include="Engine\Skills\BasicSpells\WindGust.cs" />
     <Compile Include="Engine\Skills\BasicSpells\WindGustDecorator.cs" />
     <Compile Include="Engine\Skills\SkillFactories\BasicWeaponMoveFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\ArmorDerivedSpellFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\OsirisMovesFactory.cs" />
     <Compile Include="Engine\Skills\SkillFactories\SkillFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\SwordMoveFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\WaterSpellFactory.cs" />
+    <Compile Include="Engine\Skills\SpearMoves\RollAndBackStab.cs" />
+    <Compile Include="Engine\Skills\SpearMoves\RollAndBackStabDecorator.cs" />
+    <Compile Include="Engine\Skills\SpearMoves\SpearThrow.cs" />
+    <Compile Include="Engine\Skills\SpearMoves\SpearThrowDecorator.cs" />
+    <Compile Include="Engine\Skills\SpearMoves\Whirl.cs" />
+    <Compile Include="Engine\Skills\SpearMoves\WhirlDecorator.cs" />
+    <Compile Include="Engine\Skills\SwordMoves\DoubleSlash.cs" />
+    <Compile Include="Engine\Skills\SwordMoves\DoubleSlashDecorator.cs" />
+    <Compile Include="Engine\Skills\SwordMoves\EnchantedSlash.cs" />
+    <Compile Include="Engine\Skills\SwordMoves\EnchantedSlashDecorator.cs" />
+    <Compile Include="Engine\Skills\SwordMoves\SwordThrust.cs" />
+    <Compile Include="Engine\Skills\SwordMoves\SwordThrustDecorator.cs" />
+    <Compile Include="Engine\Skills\WaterSpells\HeavyRain.cs" />
+    <Compile Include="Engine\Skills\WaterSpells\HeavyRainDecorator.cs" />
+    <Compile Include="Engine\Skills\WaterSpells\OceanWave.cs" />
+    <Compile Include="Engine\Skills\WaterSpells\OceanWaveDecorator.cs" />
+    <Compile Include="Engine\Skills\WaterSpells\TsunamiPunch.cs" />
+    <Compile Include="Engine\Skills\WaterSpells\TsunamiPunchDecorator.cs" />
     <Compile Include="Engine\StatPackage.cs" />
     <Compile Include="Engine\Subject.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -262,6 +363,61 @@
   <ItemGroup>
     <Resource Include="Display\Assets\interaction0003.png" />
     <Resource Include="Display\Assets\interaction0004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0820.png" />
+    <Resource Include="Display\Assets\monster0830.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0581.png" />
+    <Resource Include="Display\Assets\monster0583.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0581b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0180.png" />
+    <Resource Include="Display\Assets\monster0181.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0862.png" />
+    <Resource Include="Display\Assets\monster0863.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0940.png" />
+    <Resource Include="Display\Assets\monster0941.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0481.png" />
+    <Resource Include="Display\Assets\monster0482.png" />
+    <Resource Include="Display\Assets\monster0483.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1280.png" />
+    <Resource Include="Display\Assets\monster1281.png" />
+    <Resource Include="Display\Assets\monster1282.png" />
+    <Resource Include="Display\Assets\monster1283.png" />
+    <Resource Include="Display\Assets\monster1284.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item1281.png" />
+    <Resource Include="Display\Assets\item1282.png" />
+    <Resource Include="Display\Assets\item1283.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0381.png" />
+    <Resource Include="Display\Assets\item0382.png" />
+    <Resource Include="Display\Assets\item0383.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item1160.png" />
+    <Resource Include="Display\Assets\item1161.png" />
+    <Resource Include="Display\Assets\item1162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0822.png" />
+    <Resource Include="Display\Assets\item0823.png" />
+    <Resource Include="Display\Assets\item0824.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
