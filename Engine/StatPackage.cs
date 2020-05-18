@@ -10,7 +10,7 @@ namespace Game.Engine
     // meant to be used during battles and interactions
 
     // predefined damage types:
-    // PHYSICAL DAMAGE - cut, incised (po polsku: rany kłute i cięte)
+    // PHYSICAL DAMAGE - stab, incised (po polsku: rany kłute i cięte)
     // MAGIC DAMAGE - fire, air, water, earth
     // OTHERS - poison
     public class StatPackage

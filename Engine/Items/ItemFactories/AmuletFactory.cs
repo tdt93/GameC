@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Engine.Items.Amulet;
+using Game.Engine.Items.AmuletsAndPotions;
 
 namespace Game.Engine.Items.ItemFactories
 {
@@ -11,10 +12,20 @@ namespace Game.Engine.Items.ItemFactories
         {
             List<Item> amulet = new List<Item>()
             {
+                // x2 
+                new LuckyCharmAmulet(),
                 new LuckyCharmAmulet(),
                 new MageDuelistAmulet(),
+                new MageDuelistAmulet(),
                 new SupportingAmulet(),
-
+                new SupportingAmulet(),
+                new AntiPoisonAmulet(),
+                new AntiPoisonAmulet(),
+                new FireproofAmulet(),
+                new FireproofAmulet(),
+                // x1
+                new AmuletOfHealing(),
+                new AmuletOfNegotiation()
             };
             return amulet[Index.RNG(0, amulet.Count)];
         }
@@ -23,9 +34,21 @@ namespace Game.Engine.Items.ItemFactories
            
             List<Item> amulet = new List<Item>()
             {
-                 new LuckyCharmAmulet(),
-                 new SupportingAmulet()
-        };
+                 // x2
+                new LuckyCharmAmulet(),
+                new LuckyCharmAmulet(),
+                new MageDuelistAmulet(),
+                new MageDuelistAmulet(),
+                new SupportingAmulet(),
+                new SupportingAmulet(),
+                new AntiPoisonAmulet(),
+                new AntiPoisonAmulet(),
+                new FireproofAmulet(),
+                new FireproofAmulet(),
+                 // x1
+                 new AmuletOfHealing(),
+                 new AmuletOfNegotiation()
+            };
             return amulet[Index.RNG(0, amulet.Count)];
         }
         public Item CreateNonWeaponItem()
@@ -33,9 +56,18 @@ namespace Game.Engine.Items.ItemFactories
            
             List<Item> amulet = new List<Item>()
             {
+                // x2
 				new LuckyCharmAmulet(),
                 new SupportingAmulet(),
-                new MageDuelistAmulet()
+                new MageDuelistAmulet(),
+                new AntiPoisonAmulet(),
+                new LuckyCharmAmulet(),
+                new SupportingAmulet(),
+                new MageDuelistAmulet(),
+                new AntiPoisonAmulet(),
+                // x1
+                new AmuletOfHealing(),
+                new AmuletOfNegotiation()
             };
             return amulet[Index.RNG(0, amulet.Count)];
         }

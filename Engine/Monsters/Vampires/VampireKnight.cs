@@ -33,10 +33,10 @@ namespace Game.Engine.Monsters
                 else
                 {
                     Stamina -= 30;
+                    health += 30;
                     return new List<StatPackage>()
                     {
-                        new StatPackage("stab", 70 + Strength, "Vampire drinks your blood (" + (70 + Strength) + " cut damage)"),
-                        new StatPackage("bleed", 30, "You have lost a lot of blood (30 damage)")
+                        new StatPackage("stab", 70 + Strength, "Vampire drinks your blood (" + (70 + Strength) + " cut damage) and gains 30 health"), 
                     };
                 }
             }

@@ -16,8 +16,9 @@ namespace Game.Engine.Items.ItemFactories
             List<Item> basicRing = new List<Item>()
             {
                 new HealthRing(),
-                new MagicRing(),
-                new ArmorRing()
+                new ArmorRing(),
+                new InfinityRings(),
+                new MageRing()
             };
             return basicRing[Index.RNG(0, basicRing.Count)];
         }
@@ -26,7 +27,8 @@ namespace Game.Engine.Items.ItemFactories
             List<Item> basicRing = new List<Item>()
             {
                 new HealthRing(),
-                new ArmorRing()
+                new ArmorRing(),
+                new InfinityRings(),
             };
             return basicRing[Index.RNG(0, basicRing.Count)];
         }
@@ -34,8 +36,9 @@ namespace Game.Engine.Items.ItemFactories
         {
             List<Item> basicRing = new List<Item>()
             {
-                new MagicRing(),
-                new ArmorRing()
+                new ArmorRing(),
+                new InfinityRings(),
+                new MageRing()
             };
             return basicRing[Index.RNG(0, basicRing.Count)];
         }

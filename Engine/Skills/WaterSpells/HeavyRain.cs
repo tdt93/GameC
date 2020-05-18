@@ -10,13 +10,14 @@ namespace Game.Engine.Skills.WaterSpells
         
         public HeavyRain() : base("Heavy Rain", 10, 2)
         {
-            PublicName = "Heavy Rain: decrease enemy precision stat by 0.2*MP [water]"; 
+            PublicName = "Heavy Rain: decrease enemy precision and strength stat by 0.2*MP [water]"; 
             RequiredItem = "Staff";
         }
         public override List<StatPackage> BattleMove(Player player)
         {
             StatPackage response = new StatPackage("water");
-            response.PrecisionDmg = (int)(0.2 * player.MagicPower); 
+            response.PrecisionDmg = (int)(0.2 * player.MagicPower);
+            response.StrengthDmg = (int)(0.2 * player.MagicPower);
             response.CustomText = "You use Heavy Rain! (enemy precision desreased by " +((int)(0.2 * player.MagicPower)) + " )"; 
             return new List<StatPackage>() { response };
         }

@@ -13,10 +13,18 @@ namespace Game.Engine.Items.ItemFactories
         {
             List<Item> basicSword = new List<Item>()
             {
+                // x3
+                new BasicSword(),
+                new BasicSword(),
+                new BasicSword(),
+                // x1
                 new CrystalSword(),
                 new InfinitySword(),
                 new MoonlightSword(),
-                new BasicSword()
+                new DemonSword(),
+                new GreatSword(),
+                new Katana(),
+                new ButchersSword(),
             };
             return basicSword[Index.RNG(0, basicSword.Count)];
         }
@@ -24,10 +32,18 @@ namespace Game.Engine.Items.ItemFactories
         {
             List<Item> basicSword = new List<Item>()
             {
+                // x3
+                new BasicSword(),
+                new BasicSword(),
+                new BasicSword(),
+                // x1
                 new CrystalSword(),
                 new InfinitySword(),
                 new MoonlightSword(),
-                new BasicSword()
+                new DemonSword(),
+                new GreatSword(),
+                new Katana(),
+                new ButchersSword(),
             };
             return basicSword[Index.RNG(0, basicSword.Count)];
         }

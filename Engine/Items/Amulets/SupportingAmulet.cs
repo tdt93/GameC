@@ -17,7 +17,7 @@ namespace Game.Engine.Items.Amulet
             GoldValue = 80;
             Name = "item1162";
             PublicName = "SupportingAmulet";
-            PublicTip = "extra 5 points are added to each statistic when average of all of them together is smaller than 80" ;
+            PublicTip = "extra 5 points are added to each statistic when the average of all of them together is smaller than 80" ;
         }
         public override void ApplyBuffs(Engine.CharacterClasses.Player currentPlayer, List<string> otherItems)
         {

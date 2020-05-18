@@ -131,10 +131,17 @@
     <Compile Include="Engine\Interactions\Built-In\ShopInteraction.cs" />
     <Compile Include="Engine\Interactions\InteractionFactories\SkillForgetFactory.cs" />
     <Compile Include="Engine\Interactions\ListBoxInteraction.cs" />
+    <Compile Include="Engine\Items\Amulets\AmuletOfHealing.cs" />
+    <Compile Include="Engine\Items\Amulets\AmuletOfNegotiation.cs" />
+    <Compile Include="Engine\Items\Amulets\AntiPoisonAmulet.cs" />
+    <Compile Include="Engine\Items\Amulets\FireproofAmulet.cs" />
     <Compile Include="Engine\Items\Amulets\LuckyCharmAmulet.cs" />
     <Compile Include="Engine\Items\Amulets\MageDuelistAmulet.cs" />
     <Compile Include="Engine\Items\Amulets\SupportingAmulet.cs" />
     <Compile Include="Engine\Items\Axe.cs" />
+    <Compile Include="Engine\Items\Axes\DiamondAxe.cs" />
+    <Compile Include="Engine\Items\Axes\IronAxe.cs" />
+    <Compile Include="Engine\Items\Axes\SilverAxe.cs" />
     <Compile Include="Engine\Items\BasicArmor\AntiMagicArmor.cs" />
     <Compile Include="Engine\Items\BasicArmor\BerserkerArmor.cs" />
     <Compile Include="Engine\Items\BasicArmor\GrowingStoneArmor.cs" />
@@ -142,48 +149,103 @@
     <Compile Include="Engine\Items\BasicSpear.cs" />
     <Compile Include="Engine\Items\BasicStaff.cs" />
     <Compile Include="Engine\Items\BasicSword.cs" />
+    <Compile Include="Engine\Items\ElvenRings\Narya.cs" />
+    <Compile Include="Engine\Items\ElvenRings\Nenya.cs" />
+    <Compile Include="Engine\Items\ElvenRings\Vilya.cs" />
     <Compile Include="Engine\Items\Item.cs" />
     <Compile Include="Engine\Index.cs" />
     <Compile Include="Engine\Items\BasicAxe.cs" />
     <Compile Include="Engine\Items\ItemFactories\AmuletFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\AxeFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\BasicArmorFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\BasicRingFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\ItemFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\MildlyFunnyItemFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\OsirisFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\ElvenRingFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\ShieldFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\StaffFactory.cs" />
+    <Compile Include="Engine\Items\ItemFactories\StonesFactory.cs" />
     <Compile Include="Engine\Items\ItemFactories\SwordFactory.cs" />
+    <Compile Include="Engine\Items\Misc\MagiciansCan.cs" />
+    <Compile Include="Engine\Items\Misc\MagnificentCape.cs" />
+    <Compile Include="Engine\Items\Misc\SingleUseArmor.cs" />
+    <Compile Include="Engine\Items\Misc\StylisedFlatIron.cs" />
     <Compile Include="Engine\Items\Rings\ArmorRing.cs" />
     <Compile Include="Engine\Items\Rings\HealthRing.cs" />
-    <Compile Include="Engine\Items\Rings\MagicRing.cs" />
+    <Compile Include="Engine\Items\Rings\InfinityRings.cs" />
+    <Compile Include="Engine\Items\Rings\MageRing.cs" />
     <Compile Include="Engine\Items\SetOsiris\OsirisEye.cs" />
     <Compile Include="Engine\Items\SetOsiris\OsirisSabre.cs" />
     <Compile Include="Engine\Items\SetOsiris\OsirisStaff.cs" />
+    <Compile Include="Engine\Items\Shields\GoldenShield.cs" />
+    <Compile Include="Engine\Items\Shields\MirrorShield.cs" />
+    <Compile Include="Engine\Items\Shields\TurtleShield.cs" />
     <Compile Include="Engine\Items\Spear.cs" />
     <Compile Include="Engine\Items\Staff.cs" />
+    <Compile Include="Engine\Items\Staffs\FlameStaff.cs" />
+    <Compile Include="Engine\Items\Staffs\SafetyRod.cs" />
+    <Compile Include="Engine\Items\Staffs\WindStaff.cs" />
+    <Compile Include="Engine\Items\Stones\AirStone.cs" />
+    <Compile Include="Engine\Items\Stones\AntiMagicHealthStone.cs" />
+    <Compile Include="Engine\Items\Stones\EarthStone.cs" />
+    <Compile Include="Engine\Items\Stones\FireStone.cs" />
+    <Compile Include="Engine\Items\Stones\GoldStone.cs" />
+    <Compile Include="Engine\Items\Stones\WaterStone.cs" />
     <Compile Include="Engine\Items\Sword.cs" />
+    <Compile Include="Engine\Items\Swords\ButchersSword.cs" />
     <Compile Include="Engine\Items\Swords\CrystalSword.cs" />
+    <Compile Include="Engine\Items\Swords\DemonSword.cs" />
+    <Compile Include="Engine\Items\Swords\GreatSword.cs" />
     <Compile Include="Engine\Items\Swords\InfinitySword.cs" />
+    <Compile Include="Engine\Items\Swords\Katana.cs" />
     <Compile Include="Engine\Items\Swords\MoonlightSword.cs" />
     <Compile Include="Engine\MapMatrix.cs" />
     <Compile Include="Engine\MetaMapMatrix.cs" />
     <Compile Include="Engine\Monsters\Butterflies\Butterfly.cs" />
     <Compile Include="Engine\Monsters\Butterflies\ButterflyEvolved.cs" />
+    <Compile Include="Engine\Monsters\Dragons\DeathDragon.cs" />
+    <Compile Include="Engine\Monsters\Dragons\FireDragon.cs" />
     <Compile Include="Engine\Monsters\Dragons\IceDragon.cs" />
     <Compile Include="Engine\Monsters\Dragons\IceEgg.cs" />
     <Compile Include="Engine\Monsters\Egyptian\AnubisGuard.cs" />
     <Compile Include="Engine\Monsters\Egyptian\ArabicSkeleton.cs" />
+    <Compile Include="Engine\Monsters\ElementalBats\AirBat.cs" />
+    <Compile Include="Engine\Monsters\ElementalBats\EarthBat.cs" />
+    <Compile Include="Engine\Monsters\ElementalBats\FireBat.cs" />
+    <Compile Include="Engine\Monsters\ElementalBats\WaterBat.cs" />
+    <Compile Include="Engine\Monsters\Hogs\HellHog.cs" />
+    <Compile Include="Engine\Monsters\Hogs\Hog.cs" />
+    <Compile Include="Engine\Monsters\Hogs\HolyHog.cs" />
     <Compile Include="Engine\Monsters\Hydras\Hydra1.cs" />
     <Compile Include="Engine\Monsters\Hydras\Hydra2.cs" />
     <Compile Include="Engine\Monsters\Hydras\Hydra3.cs" />
     <Compile Include="Engine\Monsters\Hydras\Hydra4.cs" />
+    <Compile Include="Engine\Monsters\Misc\Elementalist.cs" />
+    <Compile Include="Engine\Monsters\Misc\Fleyon.cs" />
     <Compile Include="Engine\Monsters\Misc\GiantGerm.cs" />
     <Compile Include="Engine\Monsters\Misc\Golem.cs" />
+    <Compile Include="Engine\Monsters\Misc\Jester.cs" />
     <Compile Include="Engine\Monsters\Misc\Mimic.cs" />
+    <Compile Include="Engine\Monsters\Misc\Numi.cs" />
+    <Compile Include="Engine\Monsters\Misc\Numidex.cs" />
     <Compile Include="Engine\Monsters\Misc\Phoenix.cs" />
+    <Compile Include="Engine\Monsters\Misc\UndeadBishop.cs" />
     <Compile Include="Engine\Monsters\Misc\Unicorn.cs" />
     <Compile Include="Engine\Monsters\Misc\UnseenHorror.cs" />
     <Compile Include="Engine\Monsters\Monster.cs" />
     <Compile Include="Engine\CharacterClasses\Player.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\BatFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\DragonFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\ElementalBatFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\ElementalistFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\FleyonFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\HogFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\JesterFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\NumiFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\SpiderFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\ThugFactory.cs" />
+    <Compile Include="Engine\Monsters\MonsterFactories\UndeadBishopFactory.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\ButterflyFactory.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\EgyptMontersFactory.cs" />
     <Compile Include="Engine\Monsters\MonsterFactories\GermFactory.cs" />
@@ -198,6 +260,10 @@
     <Compile Include="Engine\Monsters\MonsterFactories\UnseenHorrorFactory.cs" />
     <Compile Include="Engine\Monsters\Rat.cs" />
     <Compile Include="Engine\Monsters\RatEvolved.cs" />
+    <Compile Include="Engine\Monsters\Spiders\Spider.cs" />
+    <Compile Include="Engine\Monsters\Spiders\Tarantula.cs" />
+    <Compile Include="Engine\Monsters\Thugs\Thug.cs" />
+    <Compile Include="Engine\Monsters\Thugs\ThugSurvivor.cs" />
     <Compile Include="Engine\Monsters\Vampires\Bat.cs" />
     <Compile Include="Engine\Monsters\Vampires\VampireKnight.cs" />
     <Compile Include="Engine\SaveData.cs" />
@@ -211,8 +277,17 @@
     <Compile Include="Engine\Skills\AdvancedSpells\HealingDecorator.cs" />
     <Compile Include="Engine\Skills\AdvancedSpells\LifeDrain.cs" />
     <Compile Include="Engine\Skills\AdvancedSpells\LifeDrainDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\PoisonTornado.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\PoisonTornadoDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\SoulEater.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\SoulEaterDecorator.cs" />
     <Compile Include="Engine\Skills\AdvancedSpells\StrengthTheftDecorator.cs" />
     <Compile Include="Engine\Skills\AdvancedSpells\StrengthTheft.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\WaterBlast.cs" />
+    <Compile Include="Engine\Skills\AdvancedSpells\WaterBlastDecorator.cs" />
+    <Compile Include="Engine\Skills\AdvancedWeaponMoves\AuraOfASword.cs" />
+    <Compile Include="Engine\Skills\AdvancedWeaponMoves\AxeThrow.cs" />
+    <Compile Include="Engine\Skills\AdvancedWeaponMoves\EagleEye.cs" />
     <Compile Include="Engine\Skills\ArmorDerivedSpells\Bloodlust.cs" />
     <Compile Include="Engine\Skills\ArmorDerivedSpells\BloodlustDecorator.cs" />
     <Compile Include="Engine\Skills\ArmorDerivedSpells\Heal.cs" />
@@ -232,16 +307,38 @@
     <Compile Include="Engine\Skills\BasicWeaponMoves\AxeCut.cs" />
     <Compile Include="Engine\Skills\BasicWeaponMoves\SpearStab.cs" />
     <Compile Include="Engine\Skills\BasicWeaponMoves\SwordSlash.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\AuraOfTheSword.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\AuraOfTheSwordDecorator.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\Blessing.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\BlessingDecorator.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\MagicArrow.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\MagicArrowDecorator.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\StoneSkin.cs" />
+    <Compile Include="Engine\Skills\BuffSpells\StoneSkinDecorator.cs" />
+    <Compile Include="Engine\Skills\HolySpells\Excommunication.cs" />
+    <Compile Include="Engine\Skills\HolySpells\ExcommunicationDecorator.cs" />
+    <Compile Include="Engine\Skills\HolySpells\IceSpike.cs" />
+    <Compile Include="Engine\Skills\HolySpells\IceSpikeDecorator.cs" />
+    <Compile Include="Engine\Skills\HolySpells\Prayer.cs" />
+    <Compile Include="Engine\Skills\HolySpells\PrayerDecorator.cs" />
     <Compile Include="Engine\Skills\OsirisSpells\MummySpell.cs" />
     <Compile Include="Engine\Skills\OsirisSpells\MummySpellDecorator.cs" />
     <Compile Include="Engine\Skills\OsirisSpells\NileSplash.cs" />
     <Compile Include="Engine\Skills\OsirisSpells\NileSplashDecorator.cs" />
     <Compile Include="Engine\Skills\OsirisSpells\OsirisCurse.cs" />
     <Compile Include="Engine\Skills\OsirisSpells\OsirisCurseDecorator.cs" />
+    <Compile Include="Engine\Skills\SimpleSkills\HealingFactor.cs" />
+    <Compile Include="Engine\Skills\SimpleSkills\StoneThrow.cs" />
+    <Compile Include="Engine\Skills\SimpleSkills\VerbalAbuse.cs" />
     <Compile Include="Engine\Skills\Skill.cs" />
     <Compile Include="Engine\Skills\SkillDecorator.cs" />
     <Compile Include="Engine\Skills\SkillFactories\AdvancedSpellsFactory1.cs" />
     <Compile Include="Engine\Skills\SkillFactories\AdvancedSpellsFactory2.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\AdvancedSpellsFactory3.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\AdvancedWeaponMoveFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\SimpleSkillsFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\HolySpellsFactory.cs" />
+    <Compile Include="Engine\Skills\SkillFactories\BuffSpellsFactory.cs" />
     <Compile Include="Engine\Skills\SkillFactories\SpearMoveFactory.cs" />
     <Compile Include="Engine\Skills\SkillFactories\AxeCutFactory.cs" />
     <Compile Include="Engine\Skills\SkillFactories\BasicSpellFactory.cs" />
@@ -407,7 +504,6 @@
   <ItemGroup>
     <Resource Include="Display\Assets\item0381.png" />
     <Resource Include="Display\Assets\item0382.png" />
-    <Resource Include="Display\Assets\item0383.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Display\Assets\item1160.png" />
@@ -418,6 +514,97 @@
     <Resource Include="Display\Assets\item0822.png" />
     <Resource Include="Display\Assets\item0823.png" />
     <Resource Include="Display\Assets\item0824.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item1080.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item1260.png" />
+    <Resource Include="Display\Assets\item1261.png" />
+    <Resource Include="Display\Assets\item1262.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0641.png" />
+    <Resource Include="Display\Assets\item0642.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0540.png" />
+    <Resource Include="Display\Assets\item0542.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0180.png" />
+    <Resource Include="Display\Assets\item0181.png" />
+    <Resource Include="Display\Assets\item0182.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0850.png" />
+    <Resource Include="Display\Assets\item0851.png" />
+    <Resource Include="Display\Assets\item0852.png" />
+    <Resource Include="Display\Assets\item0853.png" />
+    <Resource Include="Display\Assets\item0854.png" />
+    <Resource Include="Display\Assets\item0855.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0221.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1260.png" />
+    <Resource Include="Display\Assets\monster1261.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1420.png" />
+    <Resource Include="Display\Assets\monster1421.png" />
+    <Resource Include="Display\Assets\monster1422.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1302.png" />
+    <Resource Include="Display\Assets\monster1303.png" />
+    <Resource Include="Display\Assets\monster1304.png" />
+    <Resource Include="Display\Assets\monster1305.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1140.png" />
+    <Resource Include="Display\Assets\monster1143.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster0621.png" />
+    <Resource Include="Display\Assets\monster0622.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1360.png" />
+    <Resource Include="Display\Assets\monster1361.png" />
+    <Resource Include="Display\Assets\monster1362.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\monster1042.png" />
+    <Resource Include="Display\Assets\monster1043.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item1360.png" />
+    <Resource Include="Display\Assets\item1361.png" />
+    <Resource Include="Display\Assets\item1362.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0341.png" />
+    <Resource Include="Display\Assets\item0342.png" />
+    <Resource Include="Display\Assets\item0343.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0940.png" />
+    <Resource Include="Display\Assets\item0942.png" />
+    <Resource Include="Display\Assets\item0943.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0863.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0581.png" />
+    <Resource Include="Display\Assets\item0582.png" />
+    <Resource Include="Display\Assets\item0583.png" />
+    <Resource Include="Display\Assets\item0584.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Display\Assets\item0620.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
