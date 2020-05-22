@@ -19,16 +19,20 @@ namespace Game.Engine.Interactions
 
         protected override void RunContent()
         {
-            parentSession.SendText("\nDrinking from this fountain can help you forget about one of your skills.");
             List<Skill> tmp = parentSession.currentPlayer.ListOfSkills;
             List<string> choices = new List<string>();
             foreach (Skill sk in tmp)
             {
                 choices.Add(sk.ToString());
             }
-            choices.Add("Thank you, I have changed my mind");
-            int a = GetListBoxChoice(choices);
-            if (a < choices.Count - 1) parentSession.currentPlayer.ListOfSkills.RemoveAt(a);
+            parentSession.SendText("\nDrinking from this fountain can help you forget about one of your skills.");
+            if (choices.Count > 1)
+            {
+                choices.Add("Thank you, I have changed my mind");
+                int a = GetListBoxChoice(choices);
+                if (a < choices.Count - 1) parentSession.currentPlayer.ListOfSkills.RemoveAt(a);
+            }
+            else parentSession.SendText("However, you only know one skill currently. Your mind is already calm and simple, so the fountain water will not change you.");
         }
     }
 }

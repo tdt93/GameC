@@ -29,7 +29,8 @@ namespace Game.Engine.CharacterClasses
                     parentSession.SendText("***********************************************************************************************");
                     parentSession.SendText("You lost! Press any key to continue.");
                     parentSession.GetKeyResponse();
-                    Application.Current.Shutdown();
+                    parentSession.EndGame();
+                    //Application.Current.Shutdown();
                 }
             }
         }

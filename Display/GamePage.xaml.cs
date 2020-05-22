@@ -298,7 +298,11 @@ namespace Game.Display
                 AddConsoleText(e.Message);
             }
         }
-
+        // end current game
+        public void EndGame()
+        {
+            frameRef.ParentFrame.Navigate(new Display.MenuPage(frameRef)); 
+        }
         protected void OnKeyDownHandler(object sender, System.Windows.Input.KeyEventArgs e)
         {
             // this function is called after a keyboard signal from the user

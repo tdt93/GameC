@@ -102,7 +102,10 @@ namespace Game.Engine
             {
                 foreach (Item item in items)
                 {
-                    for (int i = 0; i < packs.Count; i++) packs[i] = item.ModifyOffensive(packs[i], GetActiveItemNames());
+                    for (int i = 0; i < packs.Count; i++)
+                    {
+                        packs[i] = item.ModifyOffensive(packs[i], GetActiveItemNames());
+                    }
                 }
             }
             return packs;
@@ -266,6 +269,8 @@ namespace Game.Engine
         // two methods for interactions
         public void StopMoving() { parentPage.Movable = false; }
         public void StartMoving() { parentPage.Movable = true; }
+        // when you lose game
+        public void EndGame() { parentPage.EndGame();  }
         private void LocationEvents(int code)
         {
             // events and interactions that happen at special map locations
