@@ -162,5 +162,12 @@ namespace Game.Engine
             new GymirHymirFactory()
         };
 
+        // New fruit list for healing items:
+        private static List<Item> fruits = new List<Item>()
+        {
+            new BasicStaff(),
+            new BasicSpear(),
+            new BasicAxe()
+        };
     }
 }

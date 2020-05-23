@@ -115,7 +115,8 @@ namespace Game.Engine
         private void GenerateInteractions()
         {
             interactionList = new List<Interaction>();
-            for (int i = 0; i < shops; i++) interactionList.Add(new ShopInteraction(parentSession));
+            for (int i = 0; i < shops-2; i++) interactionList.Add(new ShopInteraction(parentSession));
+            for (int i = 0; i <= 2; i++) interactionList.Add(new FoodShop(parentSession));
             for (int i = shops; i < interactions; i++) interactionList.AddRange(Index.DrawInteractions(parentSession));
         }
     }
